@@ -66,3 +66,7 @@ h5 {
   text-align: center;
   padding-bottom: 1rem;
 }
+
+.header-bg {
+  background-color: gainsboro;
+}
