@@ -31,6 +31,7 @@ const Tags = () => {
 
   const removehandle = (id) => {
     console.log("hii");
+    // dispatch(deleteTag(id));
 
     const getAlert = () => (
       <SweetAlert
@@ -41,7 +42,7 @@ const Tags = () => {
         title="Are you sure?"
         onConfirm={() => {
           dispatch(deleteTag(id));
-          hideAlert();
+          getOkAlert();
         }}
         onCancel={() => hideAlert()}
         focusCancelBtn
@@ -51,10 +52,16 @@ const Tags = () => {
     );
 
     setAlert(getAlert());
+    const getOkAlert = () => (
+      <SweetAlert success title="Woot!" onConfirm={hideAlert()}>
+        I did it!
+      </SweetAlert>
+    );
   };
 
   const hideAlert = () => {
     console.log("Hiding alert...");
+
     setAlert();
   };
 

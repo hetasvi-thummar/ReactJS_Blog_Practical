@@ -7,13 +7,13 @@ const initialState = {
 
 const editTagReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "EDIT_PASTE_PENDING":
+    case "EDIT_TAG_PENDING":
       return { ...state, loading: true, edittag: null };
 
-    case "EDIT_PASTE_SUCCESS":
+    case "EDIT_TAG_SUCCESS":
       return { ...state, loading: false, edittag: action.edittag };
 
-    case "EDIT_PASTE_FAILURE":
+    case "EDIT_TAG_FAILURE":
       return { ...state, loading: false, error: true };
 
     default:

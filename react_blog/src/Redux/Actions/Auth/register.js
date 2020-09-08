@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const registerData = (username, email, password) => {
+export const registerData = (username, email, password, history) => {
   return (dispatch) => {
     dispatch({ type: "REGISTER_DATA_PENDING" });
     axios
@@ -19,13 +19,15 @@ export const registerData = (username, email, password) => {
         toast.success("successfully register", {
           position: toast.POSITION.TOP_CENTER,
         });
+        history.push("/login");
       })
 
       .catch((error) => {
         dispatch({
           type: "REGISTER_DATA_FAILURE",
+          message: error.message,
         });
-        toast.error("registration failed", {
+        toast.error(error.response.data.message[0].messages[0].message, {
           position: toast.POSITION.TOP_CENTER,
         });
       });

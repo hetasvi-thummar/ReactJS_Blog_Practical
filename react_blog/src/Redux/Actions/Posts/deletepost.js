@@ -1,23 +1,24 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { fetchAllTags } from "./alltags";
-import SweetAlert from "react-bootstrap-sweetalert";
 
-export const deleteTag = (id) => {
+import SweetAlert from "react-bootstrap-sweetalert";
+import { fetchAllPosts } from "./allpost";
+
+export const deletePost = (id) => {
   const jwt = localStorage.getItem("jwt");
   return (dispatch) => {
-    dispatch({ type: "DELETE_TAG_PENDING" });
+    dispatch({ type: "DELETE_POST_PENDING" });
     axios
-      .delete(`https://infblogdemo.herokuapp.com/tags/${id}`, {
+      .delete(`https://infblogdemo.herokuapp.com/posts/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       })
       .then((res) => {
         dispatch({
-          type: "DELETE_TAG_SUCCESS",
+          type: "DELETE_POST_SUCCESS",
         });
-        dispatch(fetchAllTags());
+        dispatch(fetchAllPosts());
 
         // toast.success("successfully deleted", {
         //   position: toast.POSITION.TOP_CENTER,
@@ -26,7 +27,7 @@ export const deleteTag = (id) => {
 
       .catch((error) => {
         dispatch({
-          type: "DELETE_TAG_FAILURE",
+          type: "DELETE_POST_FAILURE",
           message: error.message,
         });
         toast.error(error.response.data.error, {

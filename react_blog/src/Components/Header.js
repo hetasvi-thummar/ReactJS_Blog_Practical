@@ -26,9 +26,7 @@ const Header = () => {
 
   const logout = () => {
     if (localStorage.removeItem("jwt")) {
-      history.push("/");
-    } else {
-      history.push("/");
+      history.push("/login");
     }
   };
 
@@ -56,7 +54,17 @@ const Header = () => {
           <NavbarText className="pr-2 text-secondary">
             {token ? (
               <Link to="/admin/categories" className="pl-2 text-white">
-                categories
+                Categories
+              </Link>
+            ) : (
+              ""
+            )}
+          </NavbarText>
+
+          <NavbarText className="pr-2 text-secondary">
+            {token ? (
+              <Link to="/admin/posts" className="pl-2 text-white">
+                Posts
               </Link>
             ) : (
               ""

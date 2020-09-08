@@ -7,6 +7,7 @@ import { Link } from "@reach/router";
 import { FaUserAlt, FaUnlockAlt, FaEnvelope } from "react-icons/fa";
 import { registerData } from "../Redux/Actions/Auth/register";
 import { useDispatch } from "react-redux";
+import { useHistory, Redirect } from "react-router-dom";
 
 const formSchema = yup.object().shape({
   username: yup.string().required("*Username is Required"),
@@ -19,12 +20,14 @@ const Register = () => {
     resolver: yupResolver(formSchema),
   });
   const dispatch = useDispatch();
+  const history = useHistory();
   const onsubmit = (registerdata) => {
     dispatch(
       registerData(
         registerdata.username,
         registerdata.email,
-        registerdata.password
+        registerdata.password,
+        history
       )
     );
   };

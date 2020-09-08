@@ -4,12 +4,13 @@ import Register from "../Views/Register";
 import Login from "../Views/Login";
 import Home from "../Views/Home";
 import Singlepost from "../Views/Singlepost";
-import { Tags, Categories } from "../Components";
+import { Tags, Categories, Posts } from "../Components";
 
 const Myrouter = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/admin/posts" component={Posts} />
         <Route path="/admin/categories" component={Categories} />
         <Route path="/admin/tags" component={Tags} />
         <Route path="/user/:id" component={Singlepost} />

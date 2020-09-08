@@ -12,6 +12,9 @@ import fetchAllCategoriesReducer from "./Reducers/Categories/allcategories";
 import createCategoryReducer from "./Reducers/Categories/createcategories";
 import editCategoryReducer from "./Reducers/Categories/editcategories";
 import deleteCategoryReducer from "./Reducers/Categories/deletecategories";
+import createPostReducer from "./Reducers/Posts/createpost";
+import editPostReducer from "./Reducers/Posts/editpost";
+import deletePostReducer from "./Reducers/Posts/deletepost";
 
 const rootReducer = combineReducers({
   loginReducer,
@@ -26,6 +29,9 @@ const rootReducer = combineReducers({
   createCategoryReducer,
   editCategoryReducer,
   deleteCategoryReducer,
+  createPostReducer,
+  editPostReducer,
+  deletePostReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
