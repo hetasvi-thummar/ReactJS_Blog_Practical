@@ -33,9 +33,7 @@ const Posts = () => {
     dispatch(fetchAllPosts());
   }, [dispatch]);
 
-  console.log(posts);
-
-  const removehandle = (id) => {
+  const removeHandle = (id) => {
     console.log("hii");
 
     const getAlert = () => (
@@ -63,6 +61,8 @@ const Posts = () => {
     console.log("Hiding alert...");
     setAlert();
   };
+
+  const user = localStorage.getItem("username");
 
   return (
     <div>
@@ -100,46 +100,51 @@ const Posts = () => {
             ) : (
               <>
                 {posts !== null &&
-                  posts.map((post) => (
-                    <tr key={post.id}>
-                      <td>{post.id}</td>
-                      <td>{post.title}</td>
-                      <td>{post.slug}</td>
-                      <td>{post.content}</td>
-                      {/* <td>{post.user.username}</td> */}
-                      {/* <td>
-                        {post.user.map((user) => (
-                          <li>{user.username}</li>
-                        ))}
-                      </td> */}
-                      <td>
-                        {post.categories.map((catagory) => (
-                          <li>{catagory.title}</li>
-                        ))}
-                      </td>
-                      <td>{post.tags.title}</td>
-                      {/* <td>
-                        {post.tags.map((tags) => (
-                          <li>{tags.title}</li>
-                        ))}
-                      </td> */}
-                      <td>{moment(post.created_at).format("MMM Do, YY")}</td>
-                      <td>{moment(post.updated_at).format("MMM Do, YY")}</td>
-                      <td>
-                        <FaPencilAlt
-                          onClick={() => {
-                            toggle();
-                            setAction("edit");
-                            dispatch(fetchSinglePost(post.id));
-                          }}
-                          className="icon"
-                        />
+                  posts
+                    .sort(
+                      (item, index) =>
+                        new Date(index.created_at) - new Date(item.created_at)
+                    )
+                    .map((post) => (
+                      <tr key={post.id}>
+                        <td>{post.id}</td>
+                        <td>{post.title}</td>
+                        <td>{post.slug}</td>
+                        <td>{post.content}</td>
+                        {/* <td id={post.user.id}>{post.user.username}</td> */}
+                        {/* <td>
+                          {post.user.map((user) => (
+                            <li id={user.id}>{user.username}</li>
+                          ))}
+                        </td> */}
+                        <td>
+                          {post.categories.map((catagory) => (
+                            <>{catagory.title}</>
+                          ))}
+                        </td>
 
-                        <FaTrashAlt onClick={() => removehandle(post.id)} />
-                        {alert}
-                      </td>
-                    </tr>
-                  ))}
+                        <td>
+                          {post.tags.map((tags) => (
+                            <>{tags.title}</>
+                          ))}
+                        </td>
+                        <td>{moment(post.created_at).format("MMM Do, YY")}</td>
+                        <td>{moment(post.updated_at).format("MMM Do, YY")}</td>
+                        <td>
+                          <FaPencilAlt
+                            onClick={() => {
+                              toggle();
+                              setAction("edit");
+                              dispatch(fetchSinglePost(post.id));
+                            }}
+                            className="icon"
+                          />
+
+                          <FaTrashAlt onClick={() => removeHandle(post.id)} />
+                          {alert}
+                        </td>
+                      </tr>
+                    ))}
               </>
             )}
           </tbody>

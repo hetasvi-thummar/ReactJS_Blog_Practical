@@ -1,15 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const registerData = (username, email, password, history) => {
+export const registerData = (registerdata, history) => {
   return (dispatch) => {
     dispatch({ type: "REGISTER_DATA_PENDING" });
     axios
-      .post("https://infblogdemo.herokuapp.com/auth/local/register", {
-        username: username,
-        email: email,
-        password: password,
-      })
+      .post(
+        "https://infblogdemo.herokuapp.com/auth/local/register",
+        registerdata
+      )
 
       .then((res) => {
         dispatch({

@@ -22,14 +22,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const onsubmit = (registerdata) => {
-    dispatch(
-      registerData(
-        registerdata.username,
-        registerdata.email,
-        registerdata.password,
-        history
-      )
-    );
+    dispatch(registerData(registerdata, history));
   };
 
   return (
@@ -47,6 +40,7 @@ const Register = () => {
             placeholder="Username"
             control={control}
             ref={register}
+            className="login-form-control"
           />
           <FaUserAlt className="loginform-logo" />
 
@@ -63,6 +57,7 @@ const Register = () => {
             placeholder="E-mail"
             control={control}
             ref={register}
+            className="login-form-control"
           />
           <FaEnvelope className="loginform-logo" />
 
@@ -79,6 +74,7 @@ const Register = () => {
             placeholder="Password"
             control={control}
             ref={register}
+            className="login-form-control"
           />
           <FaUnlockAlt className="loginform-logo" />
 

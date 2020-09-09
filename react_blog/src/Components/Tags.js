@@ -80,7 +80,7 @@ const Tags = () => {
             Create Tag
           </Button>
         </Row>
-        <Table>
+        <Table responsive>
           <thead className="bg-light">
             <tr>
               <th>Id</th>

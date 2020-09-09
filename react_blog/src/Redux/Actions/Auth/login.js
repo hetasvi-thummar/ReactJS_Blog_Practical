@@ -31,9 +31,9 @@ export const loginData = (identifier, password, history) => {
           type: "LOGIN_DATA_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.message[0].messages[0].message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(data.map((error)=>({error.message})), {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         console.log(error.response.data);
       });
   };

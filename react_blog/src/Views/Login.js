@@ -44,6 +44,7 @@ const Login = () => {
             placeholder="Username"
             control={control}
             ref={register}
+            className="login-form-control"
           />
           <FaUserAlt className="loginform-logo" />
 
@@ -60,6 +61,7 @@ const Login = () => {
             placeholder="Password"
             control={control}
             ref={register}
+            className="login-form-control"
           />
           <FaUnlockAlt className="loginform-logo" />
 

@@ -45,7 +45,7 @@ p {
   visibility: visible;
 }
 
-.form-control {
+.login-form-control {
   border: 0rem !important;
   border-bottom: 2px solid skyblue !important;
   border-radius: 0rem !important;

@@ -58,9 +58,9 @@ const Home = () => {
                           <CardText>{post.tags.title}</CardText>
                           <CardTitle>{post.title}</CardTitle>
                           <CardText>
-                            {moment(post.created_at).format("MMM Do, YY")} by{" "}
-                            {user}
+                            {moment(post.created_at).format("MMM Do, YY")}
                           </CardText>
+                          {/* <CardTitle>{post.user.username}</CardTitle> */}
                           <CardTitle>{post.content}</CardTitle>
                           <Link to={`user/${post.id}`} className="pl-2">
                             Read More....

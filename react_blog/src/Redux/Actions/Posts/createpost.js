@@ -4,10 +4,13 @@ import { toast } from "react-toastify";
 import { fetchAllPosts } from "./allpost";
 
 export const createPost = (
+  posts,
   title,
   slug,
   content,
-
+  user,
+  categories,
+  tags,
   setModal
 ) => {
   const jwt = localStorage.getItem("jwt");
@@ -17,11 +20,17 @@ export const createPost = (
     axios
       .post(
         "https://infblogdemo.herokuapp.com/posts",
-        {
-          title: title,
-          slug: slug,
-          content: content,
-        },
+        posts,
+
+        // {
+        //   title: title,
+        //   slug: slug,
+        //   content: content,
+        //    user: 1,
+        //   categories: 13,
+        //   tags: 109,
+        // },
+
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -45,7 +54,7 @@ export const createPost = (
           type: "CREATE_POST_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.error, {
+        toast.error("failed", {
           position: toast.POSITION.TOP_CENTER,
         });
       });
