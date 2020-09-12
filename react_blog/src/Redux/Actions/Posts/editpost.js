@@ -6,9 +6,7 @@ import fetchAllPostsReducer from "../../Reducers/Posts/allpost";
 import { fetchAllPosts } from "./allpost";
 
 export const editPost = (
-  title,
-  slug,
-  content,
+  posts,
 
   id,
   setModal
@@ -18,19 +16,11 @@ export const editPost = (
   return (dispatch) => {
     dispatch({ type: "EDIT_POST_PENDING" });
     axios
-      .put(
-        `https://infblogdemo.herokuapp.com/posts/${id}`,
-        {
-          title: title,
-          slug: slug,
-          content: content,
+      .put(`https://infblogdemo.herokuapp.com/posts/${id}`, posts, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
+      })
 
       .then((res) => {
         dispatch({
@@ -49,9 +39,9 @@ export const editPost = (
           type: "EDIT_POST_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data, error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        // toast.error(error.response.data.error, {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
         // setModal(true);
       });
   };

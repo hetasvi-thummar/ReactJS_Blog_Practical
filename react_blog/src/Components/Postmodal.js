@@ -50,28 +50,33 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
   //   console.log(`Option selected:`, selectedOption);
   // };
 
-  const { loading, singlepost } = useSelector((state) => ({
-    loading: state.fetchSinglePostReducer.loading,
-    singlepost: state.fetchSinglePostReducer.singlepost,
-  }));
+  const { loading, singlepost, allcategories, alltags } = useSelector(
+    (state) => ({
+      loading: state.fetchSinglePostReducer.loading,
+      singlepost: state.fetchSinglePostReducer.singlepost,
+      allcategories: state.fetchAllCategoriesReducer.allcategories,
+      alltags: state.fetchAllTagsReducer.alltags,
+    })
+  );
 
-  const { allcategories } = useSelector((state) => ({
-    loading: state.fetchAllCategoriesReducer.loading,
-    allcategories: state.fetchAllCategoriesReducer.allcategories,
-  }));
+  // const { allcategories } = useSelector((state) => ({
+  //   loading: state.fetchAllCategoriesReducer.loading,
+  //   allcategories: state.fetchAllCategoriesReducer.allcategories,
+  // }));
 
-  const { alltags } = useSelector((state) => ({
-    loading: state.fetchAllTagsReducer.loading,
-    alltags: state.fetchAllTagsReducer.alltags,
-  }));
+  // const { alltags } = useSelector((state) => ({
+  //   loading: state.fetchAllTagsReducer.loading,
+  //   alltags: state.fetchAllTagsReducer.alltags,
+  // }));
 
   useEffect(() => {
     dispatch(fetchAllCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchAllTags());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(fetchAllTags());
+  // }, [dispatch]);
 
   const options =
     allcategories !== null &&
@@ -81,6 +86,8 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
       label: category.title,
     }));
 
+  // console.log(`Option selected:`, allcategories);
+
   const tagoptions =
     alltags !== null &&
     alltags.map((tag) => ({
@@ -89,12 +96,18 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
       label: tag.title,
     }));
 
+  const userid = localStorage.getItem("userid");
+
   const onSubmit = (posts) => {
-    console.log(posts);
+    const user = userid;
+
+    const newPosts = { ...posts, user };
+
+    console.log(newPosts);
 
     action === "create"
-      ? dispatch(createPost(posts, setModal))
-      : dispatch(editPost(posts, singlepost.id, setModal));
+      ? dispatch(createPost(newPosts, setModal))
+      : dispatch(editPost(newPosts, singlepost.id, setModal));
   };
 
   return (
@@ -202,12 +215,16 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       isMulti={true}
                       name="categories"
                       options={options}
-                      // onChange={handleChange}
-                      // defaultValue={
-                      //   action === "create"
-                      //     ? ""
-                      //     : singlepost !== null && singlepost.category
-                      // }
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singlepost !== null &&
+                            singlepost.categories.map((post) => ({
+                              id: post.id,
+                              label: post.title,
+                              value: post.title,
+                            }))
+                      }
                       control={control}
                       ref={register}
                       placeholder=" Enter Post category...."
@@ -228,14 +245,17 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       type="select"
                       isMulti={true}
                       name="tags"
-                      // value={selectedOption}
                       options={tagoptions}
-                      // onChange={handleChange}
-                      // defaultValue={
-                      //   action === "create"
-                      //     ? ""
-                      //     : singlepost !== null && singlepost.category
-                      // }
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singlepost !== null &&
+                            singlepost.tags.map((post) => ({
+                              id: post.id,
+                              label: post.title,
+                              value: post.title,
+                            }))
+                      }
                       control={control}
                       ref={register}
                       placeholder=" Select Tag ...."
@@ -248,6 +268,27 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                   </FormGroup>
                 </Col>
               </Row>
+
+              {/* <Row>
+                <Col md={12}>
+                  <FormGroup>
+                    <Controller
+                      as={Input}
+                      type="text"
+                      isMulti={true}
+                      name="user"
+                      control={control}
+                      ref={register}
+                      placeholder=" Enter Post category...."
+                      defaultValue={
+                        action === "create"
+                          ? singlepost !== null && singlepost.id
+                          : ""
+                      }
+                    />
+                  </FormGroup>
+                </Col>
+              </Row> */}
             </ModalBody>
             <ModalFooter>
               <Button color="primary">

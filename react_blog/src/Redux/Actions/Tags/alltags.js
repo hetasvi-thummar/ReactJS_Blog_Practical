@@ -1,16 +1,12 @@
 import axios from "axios";
 
 export const fetchAllTags = () => {
-  const jwt = localStorage.getItem("jwt");
+  // const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
     dispatch({ type: "ALL_TAGS_PENDING" });
     axios
-      .get("https://infblogdemo.herokuapp.com/tags", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .get("https://infblogdemo.herokuapp.com/tags")
 
       .then((res) => {
         dispatch({

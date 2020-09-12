@@ -1,16 +1,10 @@
 import axios from "axios";
 
 export const fetchAllCategories = () => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "ALL_CATEGORIES_PENDING" });
     axios
-      .get("https://infblogdemo.herokuapp.com/categories", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .get("https://infblogdemo.herokuapp.com/categories")
 
       .then((res) => {
         dispatch({

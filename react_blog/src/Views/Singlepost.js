@@ -11,6 +11,7 @@ import {
   Col,
   Button,
   CardSubtitle,
+  CardImg,
 } from "reactstrap";
 import { Header } from "../Components";
 import { fetchSinglePost } from "../Redux/Actions/Posts/singlepost";
@@ -50,6 +51,22 @@ const Singlepost = () => {
                   <Card body key={singlepost.id}>
                     <CardSubtitle>{singlepost.id}</CardSubtitle>
                     <CardText>{singlepost.categories.title}</CardText>
+                    <CardText>
+                      {singlepost.categories.map((catagory) => (
+                        <ul>
+                          {catagory.id}
+                          <li>{catagory.title}</li>
+                        </ul>
+                      ))}
+                    </CardText>
+                    <CardText>
+                      {singlepost.tags.map((tags) => (
+                        <ul>
+                          {tags.id}
+                          <li>{tags.title}</li>
+                        </ul>
+                      ))}
+                    </CardText>
                     <CardText>{singlepost.tags.title}</CardText>
                     <CardTitle>{singlepost.title}</CardTitle>
                     <CardText>

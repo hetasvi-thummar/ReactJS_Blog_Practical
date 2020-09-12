@@ -70,3 +70,51 @@ h5 {
 .header-bg {
   background-color: gainsboro;
 }
+
+.text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.title-btn {
+  background-image: linear-gradient(to right, #afaeec, lightblue);
+  border: 0rem !important;
+  border-radius: 10px;
+  display: block;
+  margin: 10px;
+  padding: 15px 25px;
+  font-size: 1rem !important;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 5rem !important;
+  padding: 0.5rem 1rem;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left !important;
+
+  background-color: #fff;
+}
+
+/* .navbar {
+  overflow: hidden;
+  position: fixed !important;
+}
+
+.main {
+  position: absolute !important;
+  padding: 16px;
+  margin-top: 30px;
+} */

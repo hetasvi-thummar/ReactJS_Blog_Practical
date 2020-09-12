@@ -3,16 +3,7 @@ import { toast } from "react-toastify";
 
 import { fetchAllPosts } from "./allpost";
 
-export const createPost = (
-  posts,
-  title,
-  slug,
-  content,
-  user,
-  categories,
-  tags,
-  setModal
-) => {
+export const createPost = (posts, setModal) => {
   const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
@@ -54,7 +45,7 @@ export const createPost = (
           type: "CREATE_POST_FAILURE",
           message: error.message,
         });
-        toast.error("failed", {
+        toast.error(error.message, {
           position: toast.POSITION.TOP_CENTER,
         });
       });

@@ -13,6 +13,7 @@ export const loginData = (identifier, password, history) => {
       .then((res) => {
         localStorage.setItem("jwt", res.data.jwt);
         localStorage.setItem("username", res.data.user.username);
+        localStorage.setItem("userid", res.data.user.id);
 
         dispatch({
           type: "LOGIN_DATA_SUCCESS",
@@ -31,10 +32,16 @@ export const loginData = (identifier, password, history) => {
           type: "LOGIN_DATA_FAILURE",
           message: error.message,
         });
-        // toast.error(data.map((error)=>({error.message})), {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
-        console.log(error.response.data);
+
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
+
+        console.log(error.response.data.message);
       });
   };
 };

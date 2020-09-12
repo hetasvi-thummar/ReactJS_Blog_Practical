@@ -29,6 +29,8 @@ const Posts = () => {
     posts: state.fetchAllPostsReducer.posts,
   }));
 
+  console.log(`list post`, posts);
+
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, [dispatch]);
@@ -62,7 +64,7 @@ const Posts = () => {
     setAlert();
   };
 
-  const user = localStorage.getItem("username");
+  // const user = localStorage.getItem("username");
 
   return (
     <div>
@@ -86,7 +88,7 @@ const Posts = () => {
               <th>Title</th>
               <th>Slug</th>
               <th>Content</th>
-              {/* <th>Username</th> */}
+              <th>Username</th>
               <th>Categories</th>
               <th>Tags</th>
               <th>Created At</th>
@@ -111,7 +113,7 @@ const Posts = () => {
                         <td>{post.title}</td>
                         <td>{post.slug}</td>
                         <td>{post.content}</td>
-                        {/* <td id={post.user.id}>{post.user.username}</td> */}
+                        <td>{post.user && post.user.username}</td>
                         {/* <td>
                           {post.user.map((user) => (
                             <li id={user.id}>{user.username}</li>

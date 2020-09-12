@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <>
       <Header></Header>
-      <Container>
+      <Container className="main">
         <Row>
           <Col>
             {loading ? (
@@ -47,9 +47,16 @@ const Home = () => {
                     <Card body key={post.id}>
                       <Row>
                         <Col md={4}>
-                          <CardImg
+                          {/* <CardImg
                             src="https://unsplash.it/80/60"
                             alt="performer"
+                          /> */}
+                          <CardImg
+                            src={
+                              post.featured_media &&
+                              `https://infblogdemo.herokuapp.com${post.featured_media.url}`
+                            }
+                            alt="post image"
                           />
                         </Col>
                         <Col md={6}>
@@ -60,9 +67,11 @@ const Home = () => {
                           <CardText>
                             {moment(post.created_at).format("MMM Do, YY")}
                           </CardText>
-                          {/* <CardTitle>{post.user.username}</CardTitle> */}
-                          <CardTitle>{post.content}</CardTitle>
-                          <Link to={`user/${post.id}`} className="pl-2">
+                          <CardTitle>
+                            {post.user && post.user.username}
+                          </CardTitle>
+                          <CardTitle className="text">{post.content}</CardTitle>
+                          <Link to={`${post.slug}/${post.id}`} className="pl-2">
                             Read More....
                           </Link>
                           {post.categories.map((catagory) => (
