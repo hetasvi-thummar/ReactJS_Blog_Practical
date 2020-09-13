@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export const fetchAllTags = () => {
-  // const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "ALL_TAGS_PENDING" });
     axios

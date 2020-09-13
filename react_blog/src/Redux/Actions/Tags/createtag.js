@@ -2,25 +2,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { fetchAllTags } from "./alltags";
 
-export const createTag = (title, slug, description, setModal) => {
+export const createTag = (tags, setModal) => {
   const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
     dispatch({ type: "CREATE_TAG_PENDING" });
     axios
-      .post(
-        "https://infblogdemo.herokuapp.com/tags",
-        {
-          title: title,
-          slug: slug,
-          description: description,
+      .post("https://infblogdemo.herokuapp.com/tags", tags, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
+      })
 
       .then((res) => {
         dispatch({
@@ -38,9 +30,13 @@ export const createTag = (title, slug, description, setModal) => {
           type: "CREATE_TAG_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

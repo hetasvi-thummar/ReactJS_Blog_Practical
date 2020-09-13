@@ -59,8 +59,6 @@ p {
   font-size: 10px !important;
 }
 
-/* signup-css */
-
 h5 {
   color: skyblue;
   text-align: center;
@@ -68,14 +66,39 @@ h5 {
 }
 
 .header-bg {
-  background-color: gainsboro;
+  background-color: white;
 }
 
+.header-logo {
+  height: 60px;
+  width: 80px;
+  padding-left: 1rem;
+  color: black;
+}
+
+.icon {
+  margin-right: 1rem;
+}
+
+.navbar-brand {
+  display: flex !important;
+  padding: 0.5rem !important;
+  cursor: pointer;
+}
+
+.header-title-label {
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  color: black;
+  font-size: 28px;
+  font-weight: 600;
+}
 .text {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
+  font-size: 18px;
 }
 
 .title-btn {
@@ -108,13 +131,296 @@ h5 {
   background-color: #fff;
 }
 
-/* .navbar {
-  overflow: hidden;
-  position: fixed !important;
+.navbar {
+  padding: 0 !important;
 }
 
 .main {
+  padding: 4rem;
+}
+
+img {
+  width: 100%;
+}
+
+.header-div {
+  height: auto;
+  width: 404px;
   position: absolute !important;
-  padding: 16px;
-  margin-top: 30px;
-} */
+  border-style: solid;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  margin-top: -12rem;
+  text-align: center;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+}
+
+.header-label {
+  /* padding: 1rem; */
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.5rem;
+}
+
+.blog-label {
+  display: flex;
+  justify-content: center !important;
+  font-weight: 600;
+  font-size: 24px;
+  padding: 2rem;
+}
+
+.blog-img {
+  width: 380px;
+  height: 380px;
+  margin: 0rem !important;
+  border: none !important;
+}
+
+.media {
+  border: 1px solid gray;
+  margin-bottom: 1rem;
+  display: flex !important;
+}
+.tag-logo {
+  margin-right: 1rem;
+  color: gray;
+  font-size: 24px;
+}
+.tag-title {
+  color: gray;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.tag-div {
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  border: none !important;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  padding-right: 1.5rem;
+}
+.blog-userlogo {
+  font-size: 34px;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+}
+.header-signin-btn {
+  background-color: white !important;
+  color: gray;
+  border: 2px solid gray !important;
+  border-radius: 1rem !important;
+}
+a {
+  color: grey !important;
+}
+.user-box {
+  color: blue;
+  border: 2px solid blue;
+  padding: 0.5rem;
+
+  max-width: fit-content;
+}
+.usericon {
+  font-size: 24px;
+  color: blue;
+  margin-right: 0.25rem;
+}
+
+.username-div {
+  border: none !important;
+}
+.category-btn {
+  background-color: skyblue !important;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border: none !important;
+}
+
+.user-title {
+  font-size: 16px;
+}
+
+.nav-link {
+  padding-left: 1rem !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  .media {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .blog-img {
+    width: 288px;
+    height: 180px;
+  }
+  .card {
+    padding: 1rem;
+    max-width: 288px;
+  }
+  .tag-div {
+    border-top: 0.5px solid gray;
+    padding: 0rem !important;
+    display: flex;
+    justify-content: space-between;
+    max-width: 280px !important;
+  }
+  .tag-title {
+    margin-right: 0.5rem !important;
+    font-size: 0.8rem;
+  }
+  .tag-logo {
+    margin-right: 0.5rem !important;
+
+    font-size: 20px;
+  }
+  .category-btn {
+    border: none !important;
+  }
+  .header-div {
+    height: auto;
+    width: 180px;
+    margin-top: -3rem;
+    font-weight: 300;
+    transform: translate(-50%, -50%);
+  }
+  .header-label {
+    padding-top: 0.5rem;
+    font-size: 15px;
+    letter-spacing: 0rem;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 424px) {
+  .media {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .blog-img {
+    width: 343px;
+    height: 180px;
+  }
+  .card {
+    padding: 1rem;
+    max-width: 343px;
+  }
+  .tag-div {
+    border-top: 0.5px solid gray;
+    padding: 0rem !important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tag-title {
+    margin-right: 0.75rem !important;
+    font-size: 0.8rem;
+  }
+  .category-btn {
+    border: none !important;
+  }
+  .header-div {
+    height: auto;
+    width: 180px;
+    margin-top: -4rem;
+    font-weight: 300;
+    transform: translate(-50%, -50%);
+  }
+  .header-label {
+    padding-top: 0.5rem;
+    font-size: 15px;
+    letter-spacing: 0rem;
+  }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+  .media {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .blog-img {
+    width: 394px;
+    height: 180px;
+  }
+  .card {
+    padding: 1rem;
+    max-width: 394px;
+  }
+  .tag-div {
+    border-top: 0.5px solid gray;
+    padding: 0rem !important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tag-title {
+    margin-right: 0.75rem !important;
+    font-size: 1rem;
+  }
+  .category-btn {
+    border: none !important;
+  }
+  .header-div {
+    height: auto;
+    width: 180px;
+    margin-top: -4.5rem;
+    font-weight: 300;
+    transform: translate(-50%, -50%);
+  }
+  .header-label {
+    padding-top: 0.5rem;
+    font-size: 15px;
+    letter-spacing: 0rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .blog-img {
+    width: 350px;
+    height: 444px;
+  }
+  .card {
+    padding: 1rem;
+    max-width: 400px;
+  }
+  .tag-div {
+    border-top: 0.5px solid gray;
+    padding: 0rem !important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tag-title {
+    margin-right: 0.75rem !important;
+    font-size: 1rem;
+  }
+
+  .header-div {
+    height: auto;
+    width: 280px;
+    margin-top: -7.5rem;
+    font-weight: 300;
+    transform: translate(-50%, -50%);
+  }
+  .header-label {
+    padding-top: 0.5rem;
+    font-size: 20px;
+    letter-spacing: 0.25rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1043px) {
+  .header-div {
+    height: auto;
+    width: 360px;
+    margin-top: -10rem;
+    font-weight: 300;
+    transform: translate(-50%, -50%);
+  }
+  .header-label {
+    padding-top: 0.5rem;
+    font-size: 28px;
+    letter-spacing: 0.5rem;
+  }
+}

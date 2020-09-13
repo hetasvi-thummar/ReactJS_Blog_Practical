@@ -5,23 +5,23 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavbarText,
   Button,
   UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  NavItem,
+  NavLink,
 } from "reactstrap";
-// import logo from "../Images/headerlogo.png";
 import { useHistory } from "react-router-dom";
-import { FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaComments, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Container } from "reactstrap";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
   const history = useHistory();
 
   const user = localStorage.getItem("username");
@@ -37,108 +37,56 @@ const Header = () => {
   };
 
   return (
-    <Navbar expand="md" className="header-bg">
-      <NavbarBrand className="pr-2">
-        <h2>Blogs</h2>
-        {/* <img className="header-logo" src={logo} alt="logo" /> */}
-      </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar></Nav>
-        <NavbarText>{/* <FaUser className="usericon" /> */}</NavbarText>
-        <NavbarText className="pr-2 text-secondary">
-          {token ? (
-            <Link to="/admin/tags" className="pl-2 text-white">
-              Tags
-            </Link>
-          ) : (
-            <Link to="/tags" className="pl-2 text-white">
-              Tags
-            </Link>
-          )}
-        </NavbarText>
+    <div>
+      <Navbar className="header-bg shadow mb-3" light expand="md">
+        <NavbarBrand>
+          <FaComments className="header-logo" />
+          <Link to="/" className="header-title-label">
+            Blogs
+          </Link>
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} className="mr-3" />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/categories">Categories</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/tags">Tags</NavLink>
+            </NavItem>
+          </Nav>
 
-        <NavbarText className="pr-2 text-secondary">
-          {token ? (
-            <Link to="/admin/categories" className="pl-2 text-white">
-              Categories
-            </Link>
-          ) : (
-            <Link to="/categories" className="pl-2 text-white">
-              Categories
-            </Link>
-          )}
-        </NavbarText>
-
-        <NavbarText className="pr-2 text-secondary">
-          {token ? (
-            <Link to="/admin/posts" className="pl-2 text-white">
-              Posts
-            </Link>
-          ) : (
-            <Link to="/" className="pl-2 text-white">
-              Posts
-            </Link>
-          )}
-        </NavbarText>
-
-        {/* <NavbarText className="pr-2 text-primary">
-            {token ? (
-              <div>
-                <FaUser className="usericon" /> {user}
-              </div>
-            ) : (
-              ""
-            )}
-          </NavbarText> */}
-
-        <UncontrolledDropdown>
-          <DropdownToggle nav>
-            {token ? (
-              <div>
-                <FaUser className="usericon" /> {user}
-              </div>
-            ) : (
-              <Button>
-                <Link to="/login" className="pl-2 text-white">
-                  Sign in
-                </Link>
-              </Button>
-            )}
-          </DropdownToggle>
-          <DropdownMenu center>
-            <DropdownItem>Posts</DropdownItem>
-            <DropdownItem>Categories</DropdownItem>
-            <DropdownItem>Tags</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={logout}>Logout</DropdownItem>
-            {/* <DropdownItem>
-              <Button className="btn-sm">
-                {token ? (
-                  <Button onClick={logout} className="signout" />
-                ) : (
-                  <Link to="/login" className="pl-2 text-white">
-                    Sign in
-                  </Link>
-                )}
-              </Button>
-            </DropdownItem> */}
-          </DropdownMenu>
-        </UncontrolledDropdown>
-
-        {/* <NavbarText>
-            <Button className="btn-sm">
+          <UncontrolledDropdown>
+            <DropdownToggle nav>
               {token ? (
-                <FaSignOutAlt onClick={logout} className="signout" />
+                <div className="user-box">
+                  <FaUserCircle className="usericon" /> {user}
+                </div>
               ) : (
-                <Link to="/login" className="pl-2 text-white">
-                  Sign in
-                </Link>
+                <Button className="header-signin-btn">
+                  <Link to="/login">Sign in</Link>
+                </Button>
               )}
-            </Button>
-          </NavbarText> */}
-      </Collapse>
-    </Navbar>
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+                <NavLink href="/admin/posts">Posts</NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink href="/admin/categories">Categories</NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink href="/admin/tags">Tags</NavLink>
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem onClick={logout} className="text-center">
+                Logout
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Collapse>
+      </Navbar>
+    </div>
   );
 };
 

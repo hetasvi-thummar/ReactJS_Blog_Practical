@@ -1,27 +1,18 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { fetchPaste } from "./fetchpaste";
 import { fetchAllTags } from "./alltags";
 
-export const editTag = (title, slug, description, id, setModal) => {
+export const editTag = (tags, id, setModal) => {
   const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
     dispatch({ type: "EDIT_TAG_PENDING" });
     axios
-      .put(
-        `https://infblogdemo.herokuapp.com/tags/${id}`,
-        {
-          title,
-          slug,
-          description,
+      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tags, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
+      })
 
       .then((res) => {
         dispatch({
@@ -30,7 +21,7 @@ export const editTag = (title, slug, description, id, setModal) => {
         });
         setModal(false);
         dispatch(fetchAllTags());
-        toast.success("successfully Updated!!", {
+        toast.success("Tag Updated Successfully!!", {
           position: toast.POSITION.TOP_CENTER,
         });
       })
@@ -40,10 +31,13 @@ export const editTag = (title, slug, description, id, setModal) => {
           type: "EDIT_TAG_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data, error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        setModal(true);
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

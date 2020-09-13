@@ -1,7 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
-import SweetAlert from "react-bootstrap-sweetalert";
 import { fetchAllPosts } from "./allpost";
 
 export const deletePost = (id) => {
@@ -14,15 +12,15 @@ export const deletePost = (id) => {
           Authorization: `Bearer ${jwt}`,
         },
       })
+
       .then((res) => {
         dispatch({
           type: "DELETE_POST_SUCCESS",
         });
         dispatch(fetchAllPosts());
-
-        // toast.success("successfully deleted", {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.success("Your record is successfully deleted!!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       })
 
       .catch((error) => {
@@ -30,9 +28,13 @@ export const deletePost = (id) => {
           type: "DELETE_POST_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

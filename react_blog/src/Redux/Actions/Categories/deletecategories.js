@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import { fetchAllCategories } from "./allcategories";
 
 export const deleteCategory = (id) => {
@@ -19,10 +18,9 @@ export const deleteCategory = (id) => {
           type: "DELETE_CATEGORY_SUCCESS",
         });
         dispatch(fetchAllCategories());
-
-        // toast.success("successfully deleted", {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.success("Record Deleted Successfully!!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       })
 
       .catch((error) => {
@@ -30,9 +28,13 @@ export const deleteCategory = (id) => {
           type: "DELETE_CATEGORY_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

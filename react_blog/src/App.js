@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Myrouter />
-      <ToastContainer hideProgressBar={true} />
+      <ToastContainer hideProgressBar={false} />
     </Provider>
   );
 };

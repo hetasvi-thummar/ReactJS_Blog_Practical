@@ -14,7 +14,7 @@ const editPostReducer = (state = initialState, action) => {
       return { ...state, loading: false, editpost: action.editpost };
 
     case "EDIT_POST_FAILURE":
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, message: action.message, error: true };
 
     default:
       return { ...state };

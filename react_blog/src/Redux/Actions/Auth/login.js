@@ -1,14 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const loginData = (identifier, password, history) => {
+export const loginData = (data, history) => {
   return (dispatch) => {
     dispatch({ type: "LOGIN_DATA_PENDING" });
     axios
-      .post("https://infblogdemo.herokuapp.com/auth/local", {
-        identifier: identifier,
-        password: password,
-      })
+      .post("https://infblogdemo.herokuapp.com/auth/local", data)
 
       .then((res) => {
         localStorage.setItem("jwt", res.data.jwt);
@@ -24,7 +21,6 @@ export const loginData = (identifier, password, history) => {
         });
 
         history.push("/");
-        console.log(res.data);
       })
 
       .catch((error) => {
@@ -40,8 +36,6 @@ export const loginData = (identifier, password, history) => {
             })
           )
         );
-
-        console.log(error.response.data.message);
       });
   };
 };

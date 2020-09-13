@@ -39,16 +39,8 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
 
   const onSubmit = (tags) => {
     action === "create"
-      ? dispatch(createTag(tags.title, tags.slug, tags.description, setModal))
-      : dispatch(
-          editTag(
-            tags.title,
-            tags.slug,
-            tags.description,
-            singletag.id,
-            setModal
-          )
-        );
+      ? dispatch(createTag(tags, setModal))
+      : dispatch(editTag(tags, singletag.id, setModal));
   };
 
   return (
@@ -64,7 +56,7 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
             <ModalBody>
               <Row>
                 <Col md={12}>
-                  <Label>New Tag</Label>
+                  <Label>Tag Description</Label>
                 </Col>
               </Row>
               <Row>
@@ -104,6 +96,7 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
                       name="slug"
                       control={control}
                       ref={register}
+                      placeholder="Enter Tag Slug"
                       defaultValue={
                         action === "create"
                           ? ""

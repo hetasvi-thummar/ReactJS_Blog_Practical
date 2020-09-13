@@ -26,9 +26,13 @@ export const registerData = (registerdata, history) => {
           type: "REGISTER_DATA_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.message[0].messages[0].message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

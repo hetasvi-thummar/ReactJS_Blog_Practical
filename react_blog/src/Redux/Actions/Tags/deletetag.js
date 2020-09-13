@@ -1,7 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { fetchAllTags } from "./alltags";
-import SweetAlert from "react-bootstrap-sweetalert";
 
 export const deleteTag = (id) => {
   const jwt = localStorage.getItem("jwt");
@@ -19,9 +18,9 @@ export const deleteTag = (id) => {
         });
         dispatch(fetchAllTags());
 
-        // toast.success("successfully deleted", {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+        toast.success("Record Deleted Successfully!!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       })
 
       .catch((error) => {
@@ -29,9 +28,13 @@ export const deleteTag = (id) => {
           type: "DELETE_TAG_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

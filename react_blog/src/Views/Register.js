@@ -3,11 +3,10 @@ import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
-import { Link } from "@reach/router";
 import { FaUserAlt, FaUnlockAlt, FaEnvelope } from "react-icons/fa";
 import { registerData } from "../Redux/Actions/Auth/register";
 import { useDispatch } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const formSchema = yup.object().shape({
   username: yup.string().required("*Username is Required"),
@@ -87,14 +86,6 @@ const Register = () => {
             Sign up
           </Button>
         </FormGroup>
-        {/* <FormGroup>
-          <p>
-            Don 't have an account?
-            <Link to="/Register" className="pr-4">
-              Sign up
-            </Link>
-          </p>
-        </FormGroup> */}
       </Form>
     </Container>
   );

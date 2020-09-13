@@ -16,8 +16,6 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { createTag } from "../Redux/Actions/Tags/createtag";
-import { editTag } from "../Redux/Actions/Tags/edittag";
 import { createPost } from "../Redux/Actions/Posts/createpost";
 import { editPost } from "../Redux/Actions/Posts/editpost";
 import Select from "react-select";
@@ -28,13 +26,9 @@ const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   content: yup.string().required("*content is Required"),
+  categories: yup.string().required("Please select Category"),
+  tags: yup.string().required("Please select Tag"),
 });
-
-// const options = [
-//   { value: "chocolate", label: "Chocolate" },
-//   { value: "strawberry", label: "Strawberry" },
-//   { value: "vanilla", label: "Vanilla" },
-// ];
 
 const Postmodal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
@@ -42,13 +36,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
   });
 
   const dispatch = useDispatch();
-
-  const [selectedOption, setSelectedOption] = useState();
-
-  // const handleChange = (selectedOption) => {
-  //   setSelectedOption({ selectedOption });
-  //   console.log(`Option selected:`, selectedOption);
-  // };
 
   const { loading, singlepost, allcategories, alltags } = useSelector(
     (state) => ({
@@ -59,24 +46,10 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
     })
   );
 
-  // const { allcategories } = useSelector((state) => ({
-  //   loading: state.fetchAllCategoriesReducer.loading,
-  //   allcategories: state.fetchAllCategoriesReducer.allcategories,
-  // }));
-
-  // const { alltags } = useSelector((state) => ({
-  //   loading: state.fetchAllTagsReducer.loading,
-  //   alltags: state.fetchAllTagsReducer.alltags,
-  // }));
-
   useEffect(() => {
     dispatch(fetchAllCategories());
     dispatch(fetchAllTags());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(fetchAllTags());
-  // }, [dispatch]);
 
   const options =
     allcategories !== null &&
@@ -85,8 +58,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
       value: category.title,
       label: category.title,
     }));
-
-  // console.log(`Option selected:`, allcategories);
 
   const tagoptions =
     alltags !== null &&
@@ -102,8 +73,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
     const user = userid;
 
     const newPosts = { ...posts, user };
-
-    console.log(newPosts);
 
     action === "create"
       ? dispatch(createPost(newPosts, setModal))
@@ -121,12 +90,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
         ) : (
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
-              <Row>
-                <Col md={12}>
-                  <Label>New Post</Label>
-                </Col>
-              </Row>
-
               <Row>
                 <Col md={4}>
                   <Label> Post Title</Label>
@@ -183,7 +146,10 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
               </Row>
 
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Post Content</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
@@ -207,7 +173,10 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                 </Col>
               </Row>
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Post Categories</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Select}
@@ -215,6 +184,9 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       isMulti={true}
                       name="categories"
                       options={options}
+                      control={control}
+                      ref={register}
+                      placeholder=" Select Post category...."
                       defaultValue={
                         action === "create"
                           ? ""
@@ -225,20 +197,20 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                               value: post.title,
                             }))
                       }
-                      control={control}
-                      ref={register}
-                      placeholder=" Enter Post category...."
                     />
-                    {/* {errors && errors.content && (
+                    {errors && errors.categories && (
                       <span className="text-danger">
-                        {errors.content.message}
+                        {errors.categories.message}
                       </span>
-                    )} */}
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Post Tags</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Select}
@@ -246,6 +218,9 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       isMulti={true}
                       name="tags"
                       options={tagoptions}
+                      control={control}
+                      ref={register}
+                      placeholder=" Select Tag ...."
                       defaultValue={
                         action === "create"
                           ? ""
@@ -256,39 +231,13 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                               value: post.title,
                             }))
                       }
-                      control={control}
-                      ref={register}
-                      placeholder=" Select Tag ...."
                     />
-                    {/* {errors && errors.content && (
-                      <span className="text-danger">
-                        {errors.content.message}
-                      </span>
-                    )} */}
+                    {errors && errors.tags && (
+                      <span className="text-danger">{errors.tags.message}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
-
-              {/* <Row>
-                <Col md={12}>
-                  <FormGroup>
-                    <Controller
-                      as={Input}
-                      type="text"
-                      isMulti={true}
-                      name="user"
-                      control={control}
-                      ref={register}
-                      placeholder=" Enter Post category...."
-                      defaultValue={
-                        action === "create"
-                          ? singlepost !== null && singlepost.id
-                          : ""
-                      }
-                    />
-                  </FormGroup>
-                </Col>
-              </Row> */}
             </ModalBody>
             <ModalFooter>
               <Button color="primary">

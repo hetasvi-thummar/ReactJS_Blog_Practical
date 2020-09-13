@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrashAlt, FaPencilAlt } from "react-icons/fa";
 import Header from "./Header";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { fetchAllTags, fetchSingleTag } from "../Redux/Actions/Tags/alltags";
-import Tagmodal from "./Tagmodal";
-import { deleteTag } from "../Redux/Actions/Tags/deletetag";
 import { fetchSinglePost } from "../Redux/Actions/Posts/singlepost";
 import { fetchAllPosts } from "../Redux/Actions/Posts/allpost";
 import Postmodal from "./Postmodal";
@@ -29,15 +26,11 @@ const Posts = () => {
     posts: state.fetchAllPostsReducer.posts,
   }));
 
-  console.log(`list post`, posts);
-
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, [dispatch]);
 
   const removeHandle = (id) => {
-    console.log("hii");
-
     const getAlert = () => (
       <SweetAlert
         warning
@@ -55,22 +48,18 @@ const Posts = () => {
         You will not be able to recover this imaginary file!
       </SweetAlert>
     );
-
     setAlert(getAlert());
   };
 
   const hideAlert = () => {
-    console.log("Hiding alert...");
     setAlert();
   };
-
-  // const user = localStorage.getItem("username");
 
   return (
     <div>
       <Header></Header>
-      <Container className="pt-5">
-        <Row className="p-3 ">
+      <Container className="p-5" fluid>
+        <Row className="pb-3">
           <Button
             color="primary"
             onClick={() => {
@@ -81,76 +70,76 @@ const Posts = () => {
             Create Post
           </Button>
         </Row>
-        <Table>
-          <thead className="bg-light">
-            <tr>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Content</th>
-              <th>Username</th>
-              <th>Categories</th>
-              <th>Tags</th>
-              <th>Created At</th>
-              <th>Updated At</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              <>
-                {posts !== null &&
-                  posts
-                    .sort(
-                      (item, index) =>
-                        new Date(index.created_at) - new Date(item.created_at)
-                    )
-                    .map((post) => (
-                      <tr key={post.id}>
-                        <td>{post.id}</td>
-                        <td>{post.title}</td>
-                        <td>{post.slug}</td>
-                        <td>{post.content}</td>
-                        <td>{post.user && post.user.username}</td>
-                        {/* <td>
-                          {post.user.map((user) => (
-                            <li id={user.id}>{user.username}</li>
-                          ))}
-                        </td> */}
-                        <td>
-                          {post.categories.map((catagory) => (
-                            <>{catagory.title}</>
-                          ))}
-                        </td>
+        <Row>
+          <Table>
+            <thead className="bg-light">
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Content</th>
+                <th>Username</th>
+                <th>Categories</th>
+                <th>Tags</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                <>
+                  {posts !== null &&
+                    posts
+                      .sort(
+                        (item, index) =>
+                          new Date(index.created_at) - new Date(item.created_at)
+                      )
+                      .map((post) => (
+                        <tr key={post.id}>
+                          <td>{post.id}</td>
+                          <td>{post.title}</td>
+                          <td>{post.slug}</td>
+                          <td>{post.content}</td>
+                          <td>{post.user && post.user.username}</td>
+                          <td>
+                            {post.categories.map((catagory) => (
+                              <>{catagory.title}</>
+                            ))}
+                          </td>
+                          <td>
+                            {post.tags.map((tags) => (
+                              <>{tags.title}</>
+                            ))}
+                          </td>
+                          <td>
+                            {moment(post.created_at).format("MMM Do, YY")}
+                          </td>
+                          <td>
+                            {moment(post.updated_at).format("MMM Do, YY")}
+                          </td>
+                          <td>
+                            <FaPencilAlt
+                              onClick={() => {
+                                toggle();
+                                setAction("edit");
+                                dispatch(fetchSinglePost(post.id));
+                              }}
+                              className="icon"
+                            />
 
-                        <td>
-                          {post.tags.map((tags) => (
-                            <>{tags.title}</>
-                          ))}
-                        </td>
-                        <td>{moment(post.created_at).format("MMM Do, YY")}</td>
-                        <td>{moment(post.updated_at).format("MMM Do, YY")}</td>
-                        <td>
-                          <FaPencilAlt
-                            onClick={() => {
-                              toggle();
-                              setAction("edit");
-                              dispatch(fetchSinglePost(post.id));
-                            }}
-                            className="icon"
-                          />
-
-                          <FaTrashAlt onClick={() => removeHandle(post.id)} />
-                          {alert}
-                        </td>
-                      </tr>
-                    ))}
-              </>
-            )}
-          </tbody>
-        </Table>
+                            <FaTrashAlt onClick={() => removeHandle(post.id)} />
+                            {alert}
+                          </td>
+                        </tr>
+                      ))}
+                </>
+              )}
+            </tbody>
+          </Table>
+        </Row>
         {modal && (
           <Postmodal
             modal={modal}

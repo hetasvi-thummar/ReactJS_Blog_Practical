@@ -16,14 +16,13 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { createTag } from "../Redux/Actions/Tags/createtag";
-import { editTag } from "../Redux/Actions/Tags/edittag";
 import { createCategory } from "../Redux/Actions/Categories/createcategories";
 import { editCategory } from "../Redux/Actions/Categories/editcategories";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
+  description: yup.string().required("*Description is Required"),
 });
 
 const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
@@ -41,16 +40,8 @@ const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
 
   const onSubmit = (categories) => {
     action === "create"
-      ? dispatch(createCategory(categories.title, categories.slug, setModal))
-      : dispatch(
-          editCategory(
-            categories.title,
-            categories.slug,
-
-            singlecategory.id,
-            setModal
-          )
-        );
+      ? dispatch(createCategory(categories, setModal))
+      : dispatch(editCategory(categories, singlecategory.id, setModal));
   };
 
   return (
@@ -65,12 +56,6 @@ const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
               <Row>
-                <Col md={12}>
-                  <Label>New Category</Label>
-                </Col>
-              </Row>
-
-              <Row>
                 <Col md={4}>
                   <Label>Category Slug</Label>
                 </Col>
@@ -82,6 +67,7 @@ const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
                       name="slug"
                       control={control}
                       ref={register}
+                      placeholder="Enter Category Slug"
                       defaultValue={
                         action === "create"
                           ? ""
@@ -106,7 +92,7 @@ const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
                       as={Input}
                       type="text"
                       name="title"
-                      placeholder="Enter Tag Title"
+                      placeholder="Enter Category Title"
                       defaultValue=""
                       control={control}
                       ref={register}
@@ -119,6 +105,35 @@ const Categoriesmodal = ({ modal, setModal, action, toggle }) => {
                     {errors && errors.title && (
                       <span className="text-danger">
                         {errors.title.message}
+                      </span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4}>
+                  <Label> Category Description</Label>
+                </Col>
+                <Col md={8}>
+                  <FormGroup>
+                    <Controller
+                      as={Input}
+                      type="textarea"
+                      name="description"
+                      placeholder="Enter Description..."
+                      defaultValue=""
+                      control={control}
+                      ref={register}
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singlecategory !== null &&
+                            singlecategory.description
+                      }
+                    />
+                    {errors && errors.description && (
+                      <span className="text-danger">
+                        {errors.description.message}
                       </span>
                     )}
                   </FormGroup>

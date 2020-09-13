@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaTrashAlt, FaPencilAlt } from "react-icons/fa";
 import Header from "./Header";
 import SweetAlert from "react-bootstrap-sweetalert";
-
-import { deleteTag } from "../Redux/Actions/Tags/deletetag";
 import {
   fetchAllCategories,
   fetchSingleCategory,
@@ -35,8 +33,6 @@ const Categories = () => {
   }, [dispatch]);
 
   const removehandle = (id) => {
-    console.log("hii");
-
     const getAlert = () => (
       <SweetAlert
         warning
@@ -54,20 +50,18 @@ const Categories = () => {
         You will not be able to recover this imaginary file!
       </SweetAlert>
     );
-
     setAlert(getAlert());
   };
 
   const hideAlert = () => {
-    console.log("Hiding alert...");
     setAlert();
   };
 
   return (
     <div>
       <Header></Header>
-      <Container className="pt-5">
-        <Row className="p-3 ">
+      <Container className="p-5" fluid>
+        <Row className="pb-3 ">
           <Button
             color="primary"
             onClick={() => {
@@ -78,55 +72,64 @@ const Categories = () => {
             Add Category
           </Button>
         </Row>
-        <Table>
-          <thead className="bg-light">
-            <tr>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Description</th>
-              <th>created At</th>
-              <th>Upadated At</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              <>
-                {allcategories !== null &&
-                  allcategories.map((Category) => (
-                    <tr key={Category.id}>
-                      <td>{Category.id}</td>
-                      <td>{Category.title}</td>
-                      <td>{Category.slug}</td>
-                      <td>{Category.description}</td>
-                      <td>
-                        {moment(Category.created_at).format("MMM Do, YY")}
-                      </td>
-                      <td>
-                        {moment(Category.updated_at).format("MMM Do, YY")}
-                      </td>
-                      <td>
-                        <FaPencilAlt
-                          onClick={() => {
-                            toggle();
-                            setAction("edit");
-                            dispatch(fetchSingleCategory(Category.id));
-                          }}
-                          className="icon"
-                        />
+        <Row>
+          <Table>
+            <thead className="bg-light">
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Description</th>
+                <th>created At</th>
+                <th>Upadated At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                <>
+                  {allcategories !== null &&
+                    allcategories
+                      .sort(
+                        (item, index) =>
+                          new Date(index.created_at) - new Date(item.created_at)
+                      )
+                      .map((Category) => (
+                        <tr key={Category.id}>
+                          <td>{Category.id}</td>
+                          <td>{Category.title}</td>
+                          <td>{Category.slug}</td>
+                          <td>{Category.description}</td>
+                          <td>
+                            {moment(Category.created_at).format("MMM Do, YY")}
+                          </td>
+                          <td>
+                            {moment(Category.updated_at).format("MMM Do, YY")}
+                          </td>
+                          <td>
+                            <FaPencilAlt
+                              onClick={() => {
+                                toggle();
+                                setAction("edit");
+                                dispatch(fetchSingleCategory(Category.id));
+                              }}
+                              className="icon"
+                            />
 
-                        <FaTrashAlt onClick={() => removehandle(Category.id)} />
-                        {alert}
-                      </td>
-                    </tr>
-                  ))}
-              </>
-            )}
-          </tbody>
-        </Table>
+                            <FaTrashAlt
+                              onClick={() => removehandle(Category.id)}
+                            />
+                            {alert}
+                          </td>
+                        </tr>
+                      ))}
+                </>
+              )}
+            </tbody>
+          </Table>
+        </Row>
         {modal && (
           <Categoriesmodal
             modal={modal}

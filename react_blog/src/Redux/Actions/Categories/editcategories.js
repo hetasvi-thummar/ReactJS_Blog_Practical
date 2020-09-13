@@ -1,10 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { fetchPaste } from "./fetchpaste";
-
 import { fetchAllCategories } from "./allcategories";
 
-export const editCategory = (title, slug, id, setModal) => {
+export const editCategory = (categories, id, setModal) => {
   const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
@@ -12,10 +10,8 @@ export const editCategory = (title, slug, id, setModal) => {
     axios
       .put(
         `https://infblogdemo.herokuapp.com/categories/${id}`,
-        {
-          title,
-          slug,
-        },
+        categories,
+
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -40,10 +36,13 @@ export const editCategory = (title, slug, id, setModal) => {
           type: "EDIT_CATEGORY_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data, error, {
-          position: toast.POSITION.TOP_CENTER,
-        });
-        setModal(true);
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

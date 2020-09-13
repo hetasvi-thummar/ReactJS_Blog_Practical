@@ -1,16 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { fetchPaste } from "./fetchpaste";
-
-import fetchAllPostsReducer from "../../Reducers/Posts/allpost";
 import { fetchAllPosts } from "./allpost";
 
-export const editPost = (
-  posts,
-
-  id,
-  setModal
-) => {
+export const editPost = (posts, id, setModal) => {
   const jwt = localStorage.getItem("jwt");
 
   return (dispatch) => {
@@ -29,7 +21,7 @@ export const editPost = (
         });
         setModal(false);
         dispatch(fetchAllPosts());
-        toast.success("successfully Updated!!", {
+        toast.success("Post Update Successfully!!", {
           position: toast.POSITION.TOP_CENTER,
         });
       })
@@ -39,10 +31,13 @@ export const editPost = (
           type: "EDIT_POST_FAILURE",
           message: error.message,
         });
-        // toast.error(error.response.data.error, {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
-        // setModal(true);
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

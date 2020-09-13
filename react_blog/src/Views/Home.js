@@ -11,10 +11,12 @@ import {
   Row,
   Col,
   Button,
-  CardSubtitle,
-  CardImg,
+  Label,
+  Media,
 } from "reactstrap";
 import { Header } from "../Components";
+import headerimg from "../Images/headerimage.png";
+import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,18 +26,26 @@ const Home = () => {
     posts: state.fetchAllPostsReducer.posts,
   }));
 
-  console.log(posts);
-
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, [dispatch]);
-
-  const user = localStorage.getItem("username");
 
   return (
     <>
       <Header></Header>
       <Container className="main">
+        <Row>
+          <Col md={12}>
+            <img src={headerimg} alt="headerimg" />
+            <div className="header-div">
+              <Label className="header-label">REACT BLOG</Label>
+            </div>
+          </Col>
+        </Row>
+        <Row className="blog-label">
+          <Label>REACT BLOG</Label>
+        </Row>
+
         <Row>
           <Col>
             {loading ? (
@@ -43,54 +53,78 @@ const Home = () => {
             ) : (
               <>
                 {posts !== null &&
-                  posts.map((post) => (
-                    <Card body key={post.id}>
-                      <Row>
-                        <Col md={4}>
-                          {/* <CardImg
-                            src="https://unsplash.it/80/60"
-                            alt="performer"
-                          /> */}
-                          <CardImg
+                  posts
+                    .sort(
+                      (item, index) =>
+                        new Date(index.created_at) - new Date(item.created_at)
+                    )
+                    .map((post) => (
+                      <Media>
+                        <Media left>
+                          <Media
                             src={
-                              post.featured_media &&
-                              `https://infblogdemo.herokuapp.com${post.featured_media.url}`
+                              post.featured_media
+                                ? `https://infblogdemo.herokuapp.com${post.featured_media.url}`
+                                : "https://unsplash.it/64/64"
                             }
                             alt="post image"
+                            className="blog-img"
                           />
-                        </Col>
-                        <Col md={6}>
-                          <CardSubtitle>{post.id}</CardSubtitle>
-                          <CardText>{post.categories.title}</CardText>
-                          <CardText>{post.tags.title}</CardText>
-                          <CardTitle>{post.title}</CardTitle>
-                          <CardText>
-                            {moment(post.created_at).format("MMM Do, YY")}
-                          </CardText>
-                          <CardTitle>
-                            {post.user && post.user.username}
-                          </CardTitle>
-                          <CardTitle className="text">{post.content}</CardTitle>
-                          <Link to={`${post.slug}/${post.id}`} className="pl-2">
-                            Read More....
-                          </Link>
-                          {post.categories.map((catagory) => (
-                            <ul>
-                              {catagory.id}
-                              <li>{catagory.title}</li>
-                            </ul>
-                          ))}
-                          {post.tags.map((tags) => (
-                            <ul>
-                              {tags.id}
-                              <li>{tags.title}</li>
-                            </ul>
-                          ))}
-                        </Col>
-                      </Row>
-                      <Col></Col>
-                    </Card>
-                  ))}
+                        </Media>
+
+                        <Media body>
+                          <Card>
+                            <Media className="username-div">
+                              <Media left>
+                                <CardText>
+                                  <FaUserCircle className="blog-userlogo" />
+                                </CardText>
+                              </Media>
+                              <Media body>
+                                <CardText className="user-title">
+                                  {post.user && post.user.username}
+                                  <br></br>
+                                  {moment(post.created_at).format("MMM Do, YY")}
+                                </CardText>
+                              </Media>
+                            </Media>
+
+                            <CardText className="card-div">
+                              {post.categories.map((category) => (
+                                <Button className="category-btn">
+                                  {category.title}
+                                </Button>
+                              ))}
+                            </CardText>
+
+                            <CardTitle>
+                              <h4>{post.title}</h4>{" "}
+                            </CardTitle>
+
+                            <CardTitle className="text">
+                              {post.content}
+                            </CardTitle>
+
+                            <Link
+                              to={`${post.slug}/${post.id}`}
+                              className="card-div text-right pb-2 border-bottom"
+                            >
+                              Read More....
+                            </Link>
+
+                            <CardText className="tag-div pt-2">
+                              <CardText>
+                                <FaTags className="tag-logo" />
+                                {post.tags.map((tag) => (
+                                  <Link className="tag-title">{tag.title}</Link>
+                                ))}
+                              </CardText>
+                              <FaRegHeart className="tag-logo" />
+                            </CardText>
+                          </Card>
+                        </Media>
+                      </Media>
+                    ))}
               </>
             )}
           </Col>

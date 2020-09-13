@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export const fetchAllPosts = () => {
-  // const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "ALL_POSTS_PENDING" });
     axios

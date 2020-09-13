@@ -14,7 +14,7 @@ const createPostReducer = (state = initialState, action) => {
       return { ...state, loading: false };
 
     case "CREATE_POST_FAILURE":
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, message: action.message, error: true };
 
     default:
       return { ...state };

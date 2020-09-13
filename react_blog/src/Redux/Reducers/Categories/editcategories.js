@@ -14,7 +14,7 @@ const editCategoryReducer = (state = initialState, action) => {
       return { ...state, loading: false, editcategory: action.editcategory };
 
     case "EDIT_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true };
+      return { ...state, loading: false, message: action.message, error: true };
 
     default:
       return { ...state };

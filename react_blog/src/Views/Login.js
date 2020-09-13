@@ -24,9 +24,8 @@ const Login = () => {
   const history = useHistory();
 
   const onsubmit = (data) => {
-    dispatch(loginData(data.identifier, data.password, history));
+    dispatch(loginData(data, history));
   };
-  const token = localStorage.getItem("jwt");
 
   return (
     <Container className=" loginform-container img" fluid={true}>

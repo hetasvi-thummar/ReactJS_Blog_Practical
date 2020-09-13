@@ -14,7 +14,13 @@ const deleteCategoryReducer = (state = initialState, action) => {
       return { ...state, loading: false };
 
     case "DELETE_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, deletecategory: null };
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        message: action.message,
+        deletecategory: null,
+      };
 
     default:
       return { ...state };

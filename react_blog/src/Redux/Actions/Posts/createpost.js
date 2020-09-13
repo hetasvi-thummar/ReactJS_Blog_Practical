@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import { fetchAllPosts } from "./allpost";
 
 export const createPost = (posts, setModal) => {
@@ -12,15 +11,6 @@ export const createPost = (posts, setModal) => {
       .post(
         "https://infblogdemo.herokuapp.com/posts",
         posts,
-
-        // {
-        //   title: title,
-        //   slug: slug,
-        //   content: content,
-        //    user: 1,
-        //   categories: 13,
-        //   tags: 109,
-        // },
 
         {
           headers: {
@@ -45,9 +35,13 @@ export const createPost = (posts, setModal) => {
           type: "CREATE_POST_FAILURE",
           message: error.message,
         });
-        toast.error(error.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

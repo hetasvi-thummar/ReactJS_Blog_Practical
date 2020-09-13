@@ -14,7 +14,13 @@ const deleteTagReducer = (state = initialState, action) => {
       return { ...state, loading: false };
 
     case "DELETE_TAG_FAILURE":
-      return { ...state, loading: false, error: true, deletetag: null };
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        message: action.message,
+        deletetag: null,
+      };
 
     default:
       return { ...state };
