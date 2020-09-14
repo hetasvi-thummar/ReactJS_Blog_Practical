@@ -179,6 +179,15 @@ img {
   border: none !important;
 }
 
+.blog-img-single {
+  min-width: 30rem;
+  margin: 0rem !important;
+  border: none !important;
+  padding: 0rem !important;
+}
+.single-card {
+  padding: 0rem !important;
+}
 .media {
   border: 1px solid gray;
   margin-bottom: 1rem;
@@ -223,8 +232,6 @@ a {
   color: blue;
   border: 2px solid blue;
   padding: 0.5rem;
-
-  max-width: fit-content;
 }
 .usericon {
   font-size: 24px;
@@ -269,6 +276,7 @@ a {
     display: flex;
     justify-content: space-between;
     max-width: 280px !important;
+    word-break: break-all;
   }
   .tag-title {
     margin-right: 0.5rem !important;
@@ -294,6 +302,12 @@ a {
     font-size: 15px;
     letter-spacing: 0rem;
   }
+  .blog-img-single {
+    min-width: 18rem;
+    margin: 0rem !important;
+    border: none !important;
+    padding: 0rem !important;
+  }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 424px) {
@@ -314,6 +328,7 @@ a {
     padding: 0rem !important;
     display: flex;
     justify-content: space-between;
+    word-break: break-all;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -333,6 +348,12 @@ a {
     padding-top: 0.5rem;
     font-size: 15px;
     letter-spacing: 0rem;
+  }
+  .blog-img-single {
+    min-width: 21.4rem;
+    margin: 0rem !important;
+    border: none !important;
+    padding: 0rem !important;
   }
 }
 
@@ -354,6 +375,7 @@ a {
     padding: 0rem !important;
     display: flex;
     justify-content: space-between;
+    word-break: break-all;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -374,6 +396,12 @@ a {
     font-size: 15px;
     letter-spacing: 0rem;
   }
+  .blog-img-single {
+    min-width: 24.5rem;
+    margin: 0rem !important;
+    border: none !important;
+    padding: 0rem !important;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -383,13 +411,14 @@ a {
   }
   .card {
     padding: 1rem;
-    max-width: 400px;
+    max-width: 30rem;
   }
   .tag-div {
     border-top: 0.5px solid gray;
     padding: 0rem !important;
     display: flex;
     justify-content: space-between;
+    word-break: break-all;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -407,6 +436,13 @@ a {
     padding-top: 0.5rem;
     font-size: 20px;
     letter-spacing: 0.25rem;
+  }
+  .blog-img-single {
+    min-width: 20rem;
+
+    margin: 0rem !important;
+    border: none !important;
+    padding: 0rem !important;
   }
 }
 

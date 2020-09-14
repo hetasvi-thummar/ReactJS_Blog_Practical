@@ -11,6 +11,7 @@ import {
   Col,
   Button,
   Media,
+  CardImg,
 } from "reactstrap";
 import { Header } from "../Components";
 import { fetchSinglePost } from "../Redux/Actions/Posts/singlepost";
@@ -19,15 +20,15 @@ import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
 
 const Singlepost = () => {
   const dispatch = useDispatch();
-
+  const { id } = useParams();
   const { loading, singlepost } = useSelector((state) => ({
     loading: state.fetchSinglePostReducer.loading,
     singlepost: state.fetchSinglePostReducer.singlepost,
   }));
 
   useEffect(() => {
-    dispatch(fetchSinglePost());
-  }, [dispatch]);
+    dispatch(fetchSinglePost(id));
+  }, [dispatch, id]);
 
   return (
     <>
@@ -42,15 +43,17 @@ const Singlepost = () => {
                 {singlepost !== null && (
                   <Media>
                     <Media left>
-                      <Media
-                        src={
-                          singlepost.featured_media
-                            ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
-                            : "https://unsplash.it/64/64"
-                        }
-                        alt="post image"
-                        className="blog-img"
-                      />
+                      <Card className="single-card">
+                        <CardImg
+                          src={
+                            singlepost.featured_media
+                              ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                              : "https://unsplash.it/64/64"
+                          }
+                          alt="post image"
+                          className="blog-img-single"
+                        />
+                      </Card>
                     </Media>
 
                     <Media body>

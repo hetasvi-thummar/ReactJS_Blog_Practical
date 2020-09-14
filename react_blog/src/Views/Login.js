@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers";
 import { Link } from "react-router-dom";
 import { FaUserAlt, FaUnlockAlt } from "react-icons/fa";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginData } from "../Redux/Actions/Auth/login";
 

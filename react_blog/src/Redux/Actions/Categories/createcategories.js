@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import { fetchAllCategories } from "./allcategories";
 
 export const createCategory = (categories, setModal) => {

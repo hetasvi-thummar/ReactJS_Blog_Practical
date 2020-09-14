@@ -31,13 +31,14 @@ export const editPost = (posts, id, setModal) => {
           type: "EDIT_POST_FAILURE",
           message: error.message,
         });
-        error.response.data.message.map((error) =>
-          error.messages.map((item) =>
-            toast.error(item.message, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          )
-        );
+
+        // error.response.data.message.map((error) =>
+        //   error.messages.map((item) =>
+        //     toast.error(item.message, {
+        //       position: toast.POSITION.TOP_CENTER,
+        //     })
+        //   )
+        // );
       });
   };
 };

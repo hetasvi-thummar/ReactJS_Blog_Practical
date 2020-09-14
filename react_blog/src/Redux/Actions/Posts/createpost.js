@@ -23,11 +23,12 @@ export const createPost = (posts, setModal) => {
         dispatch({
           type: "CREATE_POST_SUCCESS",
         });
+
+        setModal(false);
         dispatch(fetchAllPosts());
         toast.success("successfully Created New Post!!", {
           position: toast.POSITION.TOP_CENTER,
         });
-        setModal(false);
       })
 
       .catch((error) => {
@@ -35,13 +36,13 @@ export const createPost = (posts, setModal) => {
           type: "CREATE_POST_FAILURE",
           message: error.message,
         });
-        error.response.data.message.map((error) =>
-          error.messages.map((item) =>
-            toast.error(item.message, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          )
-        );
+        // error.response.data.message.map((error) =>
+        //   error.messages.map((item) =>
+        //     toast.error(item.message, {
+        //       position: toast.POSITION.TOP_CENTER,
+        //     })
+        //   )
+        // );
       });
   };
 };

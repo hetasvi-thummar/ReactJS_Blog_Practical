@@ -39,7 +39,7 @@ const Tags = () => {
         title="Are you sure?"
         onConfirm={() => {
           dispatch(deleteTag(id));
-          getOkAlert();
+          hideAlert();
         }}
         onCancel={() => hideAlert()}
         focusCancelBtn

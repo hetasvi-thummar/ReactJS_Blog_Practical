@@ -71,7 +71,7 @@ const Posts = () => {
           </Button>
         </Row>
         <Row>
-          <Table>
+          <Table responsive>
             <thead className="bg-light">
               <tr>
                 <th>Id</th>

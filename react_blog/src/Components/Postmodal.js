@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers";
 import { useForm, Controller } from "react-hook-form";
@@ -51,14 +51,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
     dispatch(fetchAllTags());
   }, [dispatch]);
 
-  const options =
-    allcategories !== null &&
-    allcategories.map((category) => ({
-      id: category.id,
-      value: category.title,
-      label: category.title,
-    }));
-
   const tagoptions =
     alltags !== null &&
     alltags.map((tag) => ({
@@ -67,9 +59,18 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
       label: tag.title,
     }));
 
+  const options =
+    allcategories !== null &&
+    allcategories.map((category) => ({
+      id: category.id,
+      value: category.title,
+      label: category.title,
+    }));
+
   const userid = localStorage.getItem("userid");
 
   const onSubmit = (posts) => {
+    console.log(`posts:`, posts);
     const user = userid;
 
     const newPosts = { ...posts, user };
