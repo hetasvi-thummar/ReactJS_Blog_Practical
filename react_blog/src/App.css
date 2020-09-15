@@ -141,9 +141,9 @@ h5 {
   padding: 0 !important;
 }
 
-.main {
+/* .main {
   padding: 4rem;
-}
+} */
 
 img {
   width: 100%;
@@ -282,9 +282,6 @@ img {
   .media {
     display: flex !important;
     flex-direction: column;
-  }
-  .main {
-    padding: 0rem !important;
   }
 
   .card {
