@@ -21,18 +21,16 @@ const Allcategories = () => {
       <Header></Header>
       <Container>
         <Row>
-          <Col>
-            {loading ? (
-              <div>Loading....</div>
-            ) : (
-              <div>
-                {allcategories !== null &&
-                  allcategories.map((Category) => (
-                    <Button className="title-btn">{Category.title}</Button>
-                  ))}
-              </div>
-            )}
-          </Col>
+          {loading ? (
+            <div>Loading....</div>
+          ) : (
+            <div>
+              {allcategories !== null &&
+                allcategories.map((Category) => (
+                  <Button className="title-btn">{Category.title}</Button>
+                ))}
+            </div>
+          )}
         </Row>
       </Container>
     </>
