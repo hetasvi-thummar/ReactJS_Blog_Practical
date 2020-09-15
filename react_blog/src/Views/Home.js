@@ -12,7 +12,6 @@ import {
   Col,
   Button,
   Label,
-  CardImg,
   Media,
 } from "reactstrap";
 import { Header } from "../Components";
@@ -61,8 +60,8 @@ const Home = () => {
                     )
                     .map((post) => (
                       <Media>
-                        <Card>
-                          <CardImg
+                        <Media left>
+                          <Media
                             src={
                               post.featured_media
                                 ? `https://infblogdemo.herokuapp.com${post.featured_media.url}`
@@ -71,7 +70,7 @@ const Home = () => {
                             alt="post image"
                             className="blog-img"
                           />
-                        </Card>
+                        </Media>
 
                         <Media body>
                           <Card>
