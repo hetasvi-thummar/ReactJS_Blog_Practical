@@ -298,6 +298,9 @@ img {
     word-break: break-all;
     padding-top: 1rem !important;
   }
+  .user-box {
+    max-width: fit-content !important;
+  }
   .tag-title {
     margin-right: 0.5rem !important;
     font-size: 0.8rem;
@@ -344,6 +347,9 @@ img {
     max-width: 343px;
     flex-direction: column !important;
   }
+  .user-box {
+    max-width: fit-content !important;
+  }
   .tag-div {
     border-top: 0.5px solid gray;
     padding: 0rem !important;
@@ -389,6 +395,9 @@ img {
     padding: 0rem;
     max-width: 394px;
     flex-direction: column !important;
+  }
+  .user-box {
+    max-width: fit-content !important;
   }
   .tag-div {
     border-top: 0.5px solid gray;
@@ -445,6 +454,11 @@ img {
   .tag-title {
     margin-right: 0.75rem !important;
     font-size: 1rem;
+  }
+  .user-box {
+    color: blue;
+    border: 2px solid blue;
+    padding: 0.5rem !important;
   }
 
   .header-div {

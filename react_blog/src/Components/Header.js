@@ -46,7 +46,7 @@ const Header = () => {
           </Link>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-3" />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse isOpen={isOpen} navbar className="m-3">
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="/categories">Categories</NavLink>
