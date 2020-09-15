@@ -213,16 +213,26 @@ img {
   margin-right: 1rem;
   font-size: 1.2rem;
 }
+.blog-image {
+  padding: 0rem !important;
+}
 
 .tag-div {
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid gray;
 }
 .card {
-  border: none !important;
-  padding-left: 1.5rem;
-  padding-top: 1rem;
-  padding-right: 1.5rem;
+  display: flex;
+  flex-direction: row !important;
+
+  margin-bottom: 1rem;
+  width: 100% !important;
+}
+.readmore-link {
+  justify-content: right !important;
+  color: gray;
+  padding-bottom: 2rem;
 }
 .blog-userlogo {
   font-size: 34px;
@@ -271,8 +281,9 @@ img {
   }
 
   .card {
-    padding: 1rem;
+    padding: 0rem;
     max-width: 288px;
+    flex-direction: column !important;
   }
   .tag-div {
     border-top: 0.5px solid gray;
@@ -321,8 +332,9 @@ img {
   }
 
   .card {
-    padding: 1rem;
+    padding: 0rem;
     max-width: 343px;
+    flex-direction: column !important;
   }
   .tag-div {
     border-top: 0.5px solid gray;
@@ -365,8 +377,9 @@ img {
   }
 
   .card {
-    padding: 1rem;
+    padding: 0rem;
     max-width: 394px;
+    flex-direction: column !important;
   }
   .tag-div {
     border-top: 0.5px solid gray;
@@ -408,7 +421,7 @@ img {
     height: 444px;
   }
   .card {
-    padding: 1rem;
+    padding: 0rem;
     /* max-width: 30rem; */
   }
   .tag-div {
@@ -463,9 +476,9 @@ img {
   }
 }
 
-@media only screen and (min-width: 1440px) and (max-width: 2559px) {
+@media only screen and (min-width: 1440px) {
   .blog-img {
-    width: 350px !important;
+    width: 50% !important;
     height: 380px;
   }
   .header-div {

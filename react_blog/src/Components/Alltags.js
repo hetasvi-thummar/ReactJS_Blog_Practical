@@ -28,7 +28,7 @@ const Alltags = () => {
               <>
                 {alltags !== null &&
                   alltags.map((tag) => (
-                    <Button className="title-btn">{tag.title}</Button>
+                    <Button className="category-btn">{tag.title}</Button>
                   ))}
               </>
             )}

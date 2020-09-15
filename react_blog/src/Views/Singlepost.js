@@ -12,6 +12,7 @@ import {
   Button,
   Media,
   CardImg,
+  CardBody,
 } from "reactstrap";
 import { Header } from "../Components";
 import { fetchSinglePost } from "../Redux/Actions/Posts/singlepost";
@@ -34,73 +35,60 @@ const Singlepost = () => {
     <>
       <Header></Header>
       <Container>
-        <Row>
-          <Col>
-            {loading ? (
-              <div>Loading....</div>
-            ) : (
-              <>
-                {singlepost !== null && (
-                  <Media>
-                    <Media body>
-                      <Card>
-                        <Media className="username-div">
-                          <Media left>
-                            <CardText>
-                              <FaUserCircle className="blog-userlogo" />
-                            </CardText>
-                          </Media>
-                          <Media body>
-                            <CardText className="user-title">
-                              {singlepost.user && singlepost.user.username}
-                              <br></br>
-                              {moment(singlepost.created_at).format(
-                                "MMM Do, YY"
-                              )}
-                            </CardText>
-                          </Media>
-                        </Media>
+        <Row className="p-4">
+          {loading ? (
+            <div>Loading....</div>
+          ) : (
+            <>
+              {singlepost !== null && (
+                <Card className="border">
+                  <Col>
+                    <CardBody>
+                      <CardText className="user-title">
+                        <FaUserCircle className="blog-userlogo" />
 
-                        <CardText className="card-div">
-                          {singlepost.categories.map((category) => (
-                            <Button className="category-btn">
-                              {category.title}
-                            </Button>
+                        {singlepost.user && singlepost.user.username}
+                        <span className="pl-2 pr-2">-</span>
+                        {moment(singlepost.created_at).format("MMM Do, YY")}
+                      </CardText>
+                      <CardImg
+                        src={
+                          singlepost.featured_media
+                            ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                            : "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg"
+                        }
+                        alt="post image"
+                        className="pb-3"
+                      />
+                      <CardText>
+                        {singlepost.categories.map((category) => (
+                          <Button className="category-btn">
+                            {category.title}
+                          </Button>
+                        ))}
+                      </CardText>
+                      <CardTitle>
+                        <h4>{singlepost.title}</h4>{" "}
+                      </CardTitle>
+                      <CardTitle className="text">
+                        {singlepost.content}
+                      </CardTitle>
+
+                      <CardText className="tag-div pt-2">
+                        <CardText>
+                          <FaTags className="tag-logo" />
+                          {singlepost.tags.map((tag) => (
+                            <Link className="tag-title">{tag.title}</Link>
                           ))}
                         </CardText>
-
-                        <CardTitle>
-                          <h4>{singlepost.title}</h4>{" "}
-                        </CardTitle>
-
-                        <CardImg
-                          src={
-                            singlepost.featured_media
-                              ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
-                              : "https://unsplash.it/64/64"
-                          }
-                          alt="post image"
-                          className="single-img"
-                        />
-
-                        <CardTitle>{singlepost.content}</CardTitle>
-
-                        <CardText className="tag-div pt-2">
-                          <CardText>
-                            <FaTags className="tag-logo" />
-                            {singlepost.tags.map((tag) => (
-                              <Link className="tag-title">{tag.title}</Link>
-                            ))}
-                          </CardText>
-                          <FaRegHeart className="tag-logo" />
-                        </CardText>
-                      </Card>
-                    </Media>
-                  </Media>
-                )}
-              </>
-            )}
-          </Col>
+                        <FaRegHeart className="tag-logo" />
+                      </CardText>
+                    </CardBody>
+                  </Col>
+                </Card>
+              )}
+            </>
+          )}
         </Row>
       </Container>
     </>
