@@ -65,7 +65,7 @@ const Home = () => {
                             src={
                               post.featured_media
                                 ? `https://infblogdemo.herokuapp.com${post.featured_media.url}`
-                                : "https://unsplash.it/64/64"
+                                : "https://unsplash.it/360/370"
                             }
                             alt="post image"
                             className="blog-img"
