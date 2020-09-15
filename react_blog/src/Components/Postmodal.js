@@ -26,8 +26,6 @@ const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   content: yup.string().required("*content is Required"),
-  categories: yup.string().required("Please select Category"),
-  tags: yup.string().required("Please select Tag"),
 });
 
 const Postmodal = ({ modal, setModal, action, toggle }) => {
@@ -70,7 +68,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
   const userid = localStorage.getItem("userid");
 
   const onSubmit = (posts) => {
-    console.log(`posts:`, posts);
     const user = userid;
 
     const newPosts = { ...posts, user };
@@ -199,11 +196,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                             }))
                       }
                     />
-                    {errors && errors.categories && (
-                      <span className="text-danger">
-                        {errors.categories.message}
-                      </span>
-                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -233,9 +225,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                             }))
                       }
                     />
-                    {errors && errors.tags && (
-                      <span className="text-danger">{errors.tags.message}</span>
-                    )}
                   </FormGroup>
                 </Col>
               </Row>

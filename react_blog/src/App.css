@@ -1,3 +1,17 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .loginform-container {
   display: flex;
   background-color: skyblue;
@@ -23,6 +37,12 @@ p {
   color: gray;
   font-size: 14px;
   padding-bottom: 0.5rem;
+}
+
+td {
+  word-wrap: break-word !important;
+  word-break: keep-all;
+  max-width: 10%;
 }
 .loginbox {
   padding: 2rem;
@@ -143,6 +163,10 @@ img {
   width: 100%;
 }
 
+.single-img {
+  height: 20rem !important;
+  padding-bottom: 2rem;
+}
 .header-div {
   height: auto;
   width: 404px;
@@ -173,20 +197,21 @@ img {
 }
 
 .blog-img {
-  width: 380px;
-  height: 380px;
+  width: 450px !important;
+  height: 320px;
   margin: 0rem !important;
   border: none !important;
 }
 
 .blog-img-single {
-  min-width: 30rem;
+  min-width: 0rem !important;
   margin: 0rem !important;
   border: none !important;
   padding: 0rem !important;
 }
 .single-card {
   padding: 0rem !important;
+  height: 10rem !important;
 }
 .media {
   border: 1px solid gray;
@@ -263,7 +288,7 @@ a {
     flex-direction: column;
   }
   .blog-img {
-    width: 288px;
+    width: 255px !important;
     height: 180px;
   }
   .card {

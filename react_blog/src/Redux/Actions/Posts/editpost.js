@@ -32,13 +32,9 @@ export const editPost = (posts, id, setModal) => {
           message: error.message,
         });
 
-        // error.response.data.message.map((error) =>
-        //   error.messages.map((item) =>
-        //     toast.error(item.message, {
-        //       position: toast.POSITION.TOP_CENTER,
-        //     })
-        //   )
-        // );
+        toast.error(error.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       });
   };
 };

@@ -7,11 +7,7 @@ export const fetchSinglePost = (id) => {
   return (dispatch) => {
     dispatch({ type: "SINGLE_POST_PENDING" });
     axios
-      .get(`https://infblogdemo.herokuapp.com/posts/${id}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .get(`https://infblogdemo.herokuapp.com/posts/${id}`)
 
       .then((res) => {
         dispatch({
