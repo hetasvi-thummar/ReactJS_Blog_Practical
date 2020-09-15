@@ -55,36 +55,35 @@ const Header = () => {
               <NavLink href="/tags">Tags</NavLink>
             </NavItem>
           </Nav>
-
-          <UncontrolledDropdown>
-            <DropdownToggle nav>
-              {token ? (
+          {token ? (
+            <UncontrolledDropdown>
+              <DropdownToggle nav>
                 <div className="user-box">
                   <FaUserCircle className="usericon" /> {user}
                 </div>
-              ) : (
-                <Button className="header-signin-btn">
-                  <FaUserCircle className="usericon" />
-                  <Link to="/login">Sign in</Link>
-                </Button>
-              )}
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>
-                <NavLink href="/admin/posts">Posts</NavLink>
-              </DropdownItem>
-              <DropdownItem>
-                <NavLink href="/admin/categories">Categories</NavLink>
-              </DropdownItem>
-              <DropdownItem>
-                <NavLink href="/admin/tags">Tags</NavLink>
-              </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem onClick={logout} className="text-center">
-                Logout
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <NavLink href="/admin/posts">Posts</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="/admin/categories">Categories</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="/admin/tags">Tags</NavLink>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={logout} className="text-center">
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          ) : (
+            <Button className="header-signin-btn mr-4">
+              <FaUserCircle className="usericon" />
+              <Link to="/login">Sign in</Link>
+            </Button>
+          )}
         </Collapse>
       </Navbar>
     </div>
