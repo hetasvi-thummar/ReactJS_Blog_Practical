@@ -43,7 +43,7 @@ const Singlepost = () => {
               {singlepost !== null && (
                 <Card className="border">
                   <Col>
-                    <CardBody>
+                    <CardBody className="single-card-body">
                       <CardText className="user-title">
                         <FaUserCircle className="blog-userlogo" />
 

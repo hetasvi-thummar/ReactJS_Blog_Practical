@@ -274,10 +274,17 @@ img {
   padding-left: 1rem !important;
 }
 
+.single-card-body {
+  padding: 1rem;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 374px) {
   .media {
     display: flex !important;
     flex-direction: column;
+  }
+  .main {
+    padding: 0rem !important;
   }
 
   .card {
@@ -292,6 +299,7 @@ img {
     justify-content: space-between;
     max-width: 280px !important;
     word-break: break-all;
+    padding-top: 1rem !important;
   }
   .tag-title {
     margin-right: 0.5rem !important;
@@ -321,6 +329,9 @@ img {
     min-width: 18rem;
     margin: 0rem !important;
     border: none !important;
+    padding: 0rem !important;
+  }
+  .single-card-body {
     padding: 0rem !important;
   }
 }

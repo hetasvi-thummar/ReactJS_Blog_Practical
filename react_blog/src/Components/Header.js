@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar className="header-bg shadow mb-3" light expand="md">
+      <Navbar className="header-bg shadow mb-5" light expand="md">
         <NavbarBrand>
           <FaComments className="header-logo" />
           <Link to="/" className="header-title-label">
