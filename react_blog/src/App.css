@@ -350,6 +350,7 @@ img {
     display: flex;
     justify-content: space-between;
     word-break: break-all;
+    padding-top: 1rem !important;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -395,6 +396,7 @@ img {
     display: flex;
     justify-content: space-between;
     word-break: break-all;
+    padding-top: 1rem !important;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -438,6 +440,7 @@ img {
     display: flex;
     justify-content: space-between;
     word-break: break-all;
+    padding-top: 1rem !important;
   }
   .tag-title {
     margin-right: 0.75rem !important;
@@ -492,7 +495,7 @@ img {
   .header-div {
     height: auto;
     width: 360px;
-    margin-top: -10rem;
+    margin-top: -15rem !important;
     font-weight: 300;
     transform: translate(-50%, -50%);
   }
