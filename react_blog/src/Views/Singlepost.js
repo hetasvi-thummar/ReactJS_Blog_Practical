@@ -73,17 +73,16 @@ const Singlepost = () => {
                           <h4>{singlepost.title}</h4>{" "}
                         </CardTitle>
 
-                        <Card>
-                          <CardImg
-                            src={
-                              singlepost.featured_media
-                                ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
-                                : "https://unsplash.it/64/64"
-                            }
-                            alt="post image"
-                            className="single-img"
-                          />
-                        </Card>
+                        <CardImg
+                          src={
+                            singlepost.featured_media
+                              ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                              : "https://unsplash.it/64/64"
+                          }
+                          alt="post image"
+                          className="single-img"
+                        />
+
                         <CardTitle>{singlepost.content}</CardTitle>
 
                         <CardText className="tag-div pt-2">

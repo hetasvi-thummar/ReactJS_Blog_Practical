@@ -198,7 +198,7 @@ img {
 
 .blog-img {
   width: 450px !important;
-  height: 320px;
+  height: 380px;
   margin: 0rem !important;
   border: none !important;
 }
@@ -246,13 +246,10 @@ img {
 }
 .header-signin-btn {
   background-color: white !important;
-  color: gray;
-  border: 2px solid gray !important;
-  border-radius: 1rem !important;
+  color: blue !important;
+  border: 2px solid blue !important;
 }
-a {
-  color: grey !important;
-}
+
 .user-box {
   color: blue;
   border: 2px solid blue;
@@ -288,7 +285,7 @@ a {
     flex-direction: column;
   }
   .blog-img {
-    width: 255px !important;
+    width: 288px !important;
     height: 180px;
   }
   .card {
@@ -341,7 +338,7 @@ a {
     flex-direction: column;
   }
   .blog-img {
-    width: 343px;
+    width: 343px !important;
     height: 180px;
   }
   .card {
@@ -388,7 +385,7 @@ a {
     flex-direction: column;
   }
   .blog-img {
-    width: 394px;
+    width: 394px !important;
     height: 180px;
   }
   .card {
@@ -431,7 +428,7 @@ a {
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .blog-img {
-    width: 350px;
+    width: 350px !important;
     height: 444px;
   }
   .card {

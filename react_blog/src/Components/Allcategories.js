@@ -25,12 +25,12 @@ const Allcategories = () => {
             {loading ? (
               <div>Loading....</div>
             ) : (
-              <>
+              <div>
                 {allcategories !== null &&
                   allcategories.map((Category) => (
                     <Button className="title-btn">{Category.title}</Button>
                   ))}
-              </>
+              </div>
             )}
           </Col>
         </Row>

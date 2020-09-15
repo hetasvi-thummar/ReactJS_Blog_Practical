@@ -64,6 +64,7 @@ const Header = () => {
                 </div>
               ) : (
                 <Button className="header-signin-btn">
+                  <FaUserCircle className="usericon" />
                   <Link to="/login">Sign in</Link>
                 </Button>
               )}
