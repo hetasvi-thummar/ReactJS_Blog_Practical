@@ -4,13 +4,13 @@ import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
-import { store } from "./Redux/store";
-import Myrouter from "./Myrouter/Myrouter";
+import { store } from "./redux/store";
+import { Router } from "./utils/router";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Myrouter />
+      <Router />
       <ToastContainer hideProgressBar={false} />
     </Provider>
   );
