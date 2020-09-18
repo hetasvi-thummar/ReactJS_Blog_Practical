@@ -12,11 +12,13 @@ import {
   Button,
   CardImg,
   CardBody,
+  Label,
 } from "reactstrap";
 import { Header } from "../../components";
 import { fetchSinglePost } from "../../redux/actions/PostsActions";
 import { useParams } from "react-router-dom";
 import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
+import headerimg from "../../images/headerimage.png";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -36,6 +38,17 @@ const SinglePost = () => {
     <>
       <Header></Header>
       <Container>
+        <Row>
+          <Col md={12}>
+            <img src={headerimg} alt="headerimg" />
+            <div className="header-div">
+              <Label className="header-label">REACT BLOG</Label>
+            </div>
+          </Col>
+        </Row>
+        <Row className="blog-label">
+          <Label>REACT BLOG</Label>
+        </Row>
         <Row className="p-4">
           {loading ? (
             <div>Loading....</div>
@@ -52,15 +65,6 @@ const SinglePost = () => {
                         <span className="pl-2 pr-2">-</span>
                         {moment(singlepost.created_at).format("MMM Do, YY")}
                       </CardText>
-                      <CardImg
-                        src={
-                          singlepost.featured_media
-                            ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
-                            : "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg"
-                        }
-                        alt="post image"
-                        className="pb-3"
-                      />
                       <CardText>
                         {singlepost.categories.map((category) => (
                           <Button className="category-btn">
@@ -68,9 +72,19 @@ const SinglePost = () => {
                           </Button>
                         ))}
                       </CardText>
-                      <CardTitle>
-                        <h4>{singlepost.title}</h4>{" "}
+                      <CardTitle className="pb-3">
+                        <h4>{singlepost.title}</h4>
                       </CardTitle>
+                      <CardImg
+                        src={
+                          singlepost.featured_media
+                            ? `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                            : "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg"
+                        }
+                        alt="post image"
+                        className="pb-4"
+                      />
+
                       <CardTitle>{singlepost.content}</CardTitle>
 
                       <CardText className="tag-div pt-2">

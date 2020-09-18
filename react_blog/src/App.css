@@ -273,7 +273,7 @@ img {
 }
 
 .single-card-body {
-  padding: 1rem;
+  padding: 6rem !important;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 374px) {
