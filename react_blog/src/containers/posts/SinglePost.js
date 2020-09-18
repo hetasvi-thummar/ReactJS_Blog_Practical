@@ -46,10 +46,8 @@ const SinglePost = () => {
             </div>
           </Col>
         </Row>
-        <Row className="blog-label">
-          <Label>REACT BLOG</Label>
-        </Row>
-        <Row className="p-4">
+
+        <Row className="p-3">
           {loading ? (
             <div>Loading....</div>
           ) : (
@@ -73,7 +71,7 @@ const SinglePost = () => {
                         ))}
                       </CardText>
                       <CardTitle className="pb-3">
-                        <h4>{singlepost.title}</h4>
+                        <h5>{singlepost.title}</h5>
                       </CardTitle>
                       <CardImg
                         src={
@@ -85,7 +83,9 @@ const SinglePost = () => {
                         className="pb-4"
                       />
 
-                      <CardTitle>{singlepost.content}</CardTitle>
+                      <CardTitle className="pb-4">
+                        {singlepost.content}
+                      </CardTitle>
 
                       <CardText className="tag-div pt-2">
                         <CardText>
