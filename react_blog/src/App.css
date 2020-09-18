@@ -345,6 +345,9 @@ img {
     max-width: 343px;
     flex-direction: column !important;
   }
+  .single-card-body {
+    padding: 0rem !important;
+  }
   .user-box {
     max-width: fit-content !important;
   }
@@ -396,6 +399,9 @@ img {
   }
   .user-box {
     max-width: fit-content !important;
+  }
+  .single-card-body {
+    padding: 0rem !important;
   }
   .tag-div {
     border-top: 0.5px solid gray;
