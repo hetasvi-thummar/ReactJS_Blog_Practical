@@ -59,7 +59,7 @@ const CategoriesTable = () => {
   return (
     <div>
       <Row>
-        <Table responsive>
+        <Table responsive bordered>
           <thead className="bg-light">
             <tr>
               <th>Id</th>
@@ -106,6 +106,7 @@ const CategoriesTable = () => {
 
                           <FaTrashAlt
                             onClick={() => removeHandle(Category.id)}
+                            className="delete-icon "
                           />
                           {alert}
                         </td>

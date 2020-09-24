@@ -3,6 +3,7 @@ import { Button, Row, Container } from "reactstrap";
 import Header from "../../components/Header";
 import Tagmodal from "./TagModal";
 import TagsTable from "./TagsTable";
+import { Layout } from "../../components";
 
 const Tags = () => {
   const [modal, setModal] = useState(false);
@@ -12,8 +13,7 @@ const Tags = () => {
   const [action, setAction] = useState();
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container className="p-5" fluid>
         <Row className="pb-3 ">
           <Button
@@ -36,7 +36,7 @@ const Tags = () => {
           />
         )}
       </Container>
-    </>
+    </Layout>
   );
 };
 

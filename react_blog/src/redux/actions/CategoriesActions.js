@@ -1,11 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Config, errorHandel } from "../../common";
+
+const jwt = localStorage.getItem("jwt");
 
 export const fetchAllCategories = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_CATEGORIES_PENDING" });
     axios
-      .get("https://infblogdemo.herokuapp.com/categories")
+      .get(`${Config.apiUrl}/categories`)
 
       .then((res) => {
         dispatch({
@@ -23,12 +26,10 @@ export const fetchAllCategories = () => {
 };
 
 export const fetchSingleCategory = (id) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "SINGLE_CATEGORY_PENDING" });
     axios
-      .get(`https://infblogdemo.herokuapp.com/categories/${id}`, {
+      .get(`${Config.apiUrl}/categories/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -50,13 +51,11 @@ export const fetchSingleCategory = (id) => {
 };
 
 export const createCategory = (categories, setModal) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "CREATE_CATEGORY_PENDING" });
     axios
       .post(
-        "https://infblogdemo.herokuapp.com/categories",
+        `${Config.apiUrl}/categories`,
         categories,
 
         {
@@ -71,9 +70,7 @@ export const createCategory = (categories, setModal) => {
           type: "CREATE_CATEGORY_SUCCESS",
         });
         dispatch(fetchAllCategories());
-        toast.success("successfully Created New Category!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("successfully Created New Category!!");
         setModal(false);
       })
 
@@ -83,23 +80,16 @@ export const createCategory = (categories, setModal) => {
           message: error.message,
         });
 
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };
 
 export const deleteCategory = (id) => {
-  const jwt = localStorage.getItem("jwt");
   return (dispatch) => {
     dispatch({ type: "DELETE_CATEGORY_PENDING" });
     axios
-      .delete(`https://infblogdemo.herokuapp.com/categories/${id}`, {
+      .delete(`${Config.apiUrl}/categories/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -110,9 +100,7 @@ export const deleteCategory = (id) => {
           type: "DELETE_CATEGORY_SUCCESS",
         });
         dispatch(fetchAllCategories());
-        toast.success("Record Deleted Successfully!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("Record Deleted Successfully!!");
       })
 
       .catch((error) => {
@@ -125,13 +113,11 @@ export const deleteCategory = (id) => {
 };
 
 export const editCategory = (categories, id, setModal) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "EDIT_CATEGORY_PENDING" });
     axios
       .put(
-        `https://infblogdemo.herokuapp.com/categories/${id}`,
+        `${Config.apiUrl}/categories/${id}`,
         categories,
 
         {
@@ -148,9 +134,7 @@ export const editCategory = (categories, id, setModal) => {
         });
         setModal(false);
         dispatch(fetchAllCategories());
-        toast.success(" Category successfully Updated!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success(" Category successfully Updated!!");
       })
 
       .catch((error) => {
@@ -158,13 +142,7 @@ export const editCategory = (categories, id, setModal) => {
           type: "EDIT_CATEGORY_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };

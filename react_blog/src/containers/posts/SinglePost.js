@@ -14,7 +14,7 @@ import {
   CardBody,
   Label,
 } from "reactstrap";
-import { Header } from "../../components";
+import { Header, Layout } from "../../components";
 import { fetchSinglePost } from "../../redux/actions/PostsActions";
 import { useParams } from "react-router-dom";
 import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
@@ -35,8 +35,7 @@ const SinglePost = () => {
   }, [dispatch, id]);
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container>
         <Row>
           <Col md={12}>
@@ -106,7 +105,7 @@ const SinglePost = () => {
           )}
         </Row>
       </Container>
-    </>
+    </Layout>
   );
 };
 

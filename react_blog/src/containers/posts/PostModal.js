@@ -21,7 +21,7 @@ import Select from "react-select";
 import { fetchAllCategories } from "../../redux/actions/CategoriesActions";
 import { fetchAllTags } from "../../redux/actions/TagsActions";
 
-const formSchema = yup.object().shape({
+const postSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   content: yup.string().required("*Content is Required"),
@@ -29,7 +29,7 @@ const formSchema = yup.object().shape({
 
 const PostModal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(postSchema),
   });
 
   const dispatch = useDispatch();
@@ -47,22 +47,6 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
     dispatch(fetchAllCategories());
     dispatch(fetchAllTags());
   }, [dispatch]);
-
-  const tagOptions =
-    alltags !== null &&
-    alltags.map((tag) => ({
-      id: tag.id,
-      value: tag.title,
-      label: tag.title,
-    }));
-
-  const options =
-    allcategories !== null &&
-    allcategories.map((category) => ({
-      id: category.id,
-      value: category.title,
-      label: category.title,
-    }));
 
   const userid = localStorage.getItem("userid");
 
@@ -178,19 +162,16 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       type="select"
                       isMulti={true}
                       name="categories"
-                      options={options}
+                      options={allcategories}
+                      getOptionLabel={(option) => option.title}
+                      getOptionValue={(option) => option.title}
                       control={control}
                       ref={register}
                       placeholder=" Select Post category...."
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlepost !== null &&
-                            singlepost.categories.map((post) => ({
-                              id: post.id,
-                              label: post.title,
-                              value: post.title,
-                            }))
+                          : singlepost !== null && singlepost.categories
                       }
                     />
                   </FormGroup>
@@ -207,19 +188,16 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       type="select"
                       isMulti={true}
                       name="tags"
-                      options={tagOptions}
+                      options={alltags}
+                      getOptionLabel={(option) => option.title}
+                      getOptionValue={(option) => option.title}
                       control={control}
                       ref={register}
                       placeholder=" Select Tag ...."
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlepost !== null &&
-                            singlepost.tags.map((post) => ({
-                              id: post.id,
-                              label: post.title,
-                              value: post.title,
-                            }))
+                          : singlepost !== null && singlepost.tags
                       }
                     />
                   </FormGroup>

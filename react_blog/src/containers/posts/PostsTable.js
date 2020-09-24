@@ -94,12 +94,12 @@ const PostsTable = () => {
                         <td>{post.user && post.user.username}</td>
                         <td>
                           {post.categories.map((catagory) => (
-                            <li>{catagory.title}</li>
+                            <div>{catagory.title}</div>
                           ))}
                         </td>
                         <td>
                           {post.tags.map((tags) => (
-                            <li>{tags.title}</li>
+                            <div>{tags.title}</div>
                           ))}
                         </td>
                         <td>{moment(post.created_at).format("MMM Do, YY")}</td>
@@ -114,7 +114,10 @@ const PostsTable = () => {
                             className="icon"
                           />
 
-                          <FaTrashAlt onClick={() => removeHandle(post.id)} />
+                          <FaTrashAlt
+                            onClick={() => removeHandle(post.id)}
+                            className="delete-icon "
+                          />
                           {alert}
                         </td>
                       </tr>

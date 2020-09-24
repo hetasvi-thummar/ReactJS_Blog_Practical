@@ -89,12 +89,12 @@ const Header = () => {
               </DropdownMenu>
             </UncontrolledDropdown>
           ) : (
-            <Button className="header-signin-btn mr-4">
-              <FaUserCircle className="usericon" />
-              <Link to="/login" title="login">
+            <Link to="/login" title="login">
+              <Button className="header-signin-btn mr-4">
+                <FaUserCircle className="usericon" />
                 Sign in
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           )}
         </Collapse>
       </Navbar>

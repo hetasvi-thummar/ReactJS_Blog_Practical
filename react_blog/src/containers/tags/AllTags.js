@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button } from "reactstrap";
-import { Header } from "../../components";
+import { Header, Layout } from "../../components";
 import { fetchAllTags } from "../../redux/actions/TagsActions";
 
 const AllTags = () => {
@@ -17,8 +17,7 @@ const AllTags = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container>
         <Row>
           <Col>
@@ -35,7 +34,7 @@ const AllTags = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </Layout>
   );
 };
 

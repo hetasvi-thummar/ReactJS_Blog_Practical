@@ -60,7 +60,7 @@ const TagsTable = () => {
   return (
     <>
       <Row>
-        <Table responsive>
+        <Table responsive bordered>
           <thead className="bg-light">
             <tr>
               <th>Id</th>
@@ -101,7 +101,10 @@ const TagsTable = () => {
                             className="icon"
                           />
 
-                          <FaTrashAlt onClick={() => removeHandle(tags.id)} />
+                          <FaTrashAlt
+                            onClick={() => removeHandle(tags.id)}
+                            className="delete-icon "
+                          />
                           {alert}
                         </td>
                       </tr>

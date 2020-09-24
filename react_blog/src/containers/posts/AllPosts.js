@@ -19,6 +19,7 @@ import {
 import Header from "../../components/Header";
 import headerimg from "../../images/headerimage.png";
 import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
+import { Layout } from "../../components";
 
 const AllPosts = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,7 @@ const AllPosts = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container>
         <Row>
           <Col md={12}>
@@ -99,7 +99,9 @@ const AllPosts = () => {
                           <CardTitle>
                             <h4>{post.title}</h4>{" "}
                           </CardTitle>
-                          <CardTitle className="text">{post.content}</CardTitle>
+                          <CardTitle className="text">
+                            {post.content.substring(0, 150) + "..."}
+                          </CardTitle>
                           <CardText className="text-right">
                             <Link
                               to={`${post.slug}/${post.id}`}
@@ -128,7 +130,7 @@ const AllPosts = () => {
           )}
         </Row>
       </Container>
-    </>
+    </Layout>
   );
 };
 

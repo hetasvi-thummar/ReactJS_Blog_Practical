@@ -3,6 +3,7 @@ import { Button, Row, Container } from "reactstrap";
 import Header from "../../components/Header";
 import Postmodal from "./PostModal";
 import PostsTable from "./PostsTable";
+import { Layout } from "../../components";
 
 const Posts = () => {
   const [modal, setModal] = useState(false);
@@ -12,8 +13,7 @@ const Posts = () => {
   const [action, setAction] = useState();
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container className="p-5" fluid>
         <Row className="pb-3">
           <Button
@@ -37,7 +37,7 @@ const Posts = () => {
           />
         )}
       </Container>
-    </>
+    </Layout>
   );
 };
 

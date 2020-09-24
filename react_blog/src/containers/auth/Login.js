@@ -9,14 +9,14 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginData } from "../../redux/actions/AuthActions";
 
-const formSchema = yup.object().shape({
+const signinSchema = yup.object().shape({
   identifier: yup.string().required("*Username is Required"),
   password: yup.string().required("*Password is Required"),
 });
 
 const Login = () => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(signinSchema),
   });
 
   const dispatch = useDispatch();

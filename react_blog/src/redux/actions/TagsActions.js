@@ -1,11 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Config, errorHandel } from "../../common";
+
+const jwt = localStorage.getItem("jwt");
 
 export const fetchAllTags = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_TAGS_PENDING" });
     axios
-      .get("https://infblogdemo.herokuapp.com/tags")
+      .get(`${Config.apiUrl}/tags`)
 
       .then((res) => {
         dispatch({
@@ -23,12 +26,10 @@ export const fetchAllTags = () => {
 };
 
 export const fetchSingleTag = (id) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "SINGLE_TAG_PENDING" });
     axios
-      .get(`https://infblogdemo.herokuapp.com/tags/${id}`, {
+      .get(`${Config.apiUrl}/tags/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -50,12 +51,10 @@ export const fetchSingleTag = (id) => {
 };
 
 export const createTag = (tags, setModal) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "CREATE_TAG_PENDING" });
     axios
-      .post("https://infblogdemo.herokuapp.com/tags", tags, {
+      .post(`${Config.apiUrl}/tags`, tags, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -66,9 +65,7 @@ export const createTag = (tags, setModal) => {
           type: "CREATE_TAG_SUCCESS",
         });
         dispatch(fetchAllTags());
-        toast.success("successfully Created New Tag!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("successfully Created New Tag!!");
         setModal(false);
       })
 
@@ -77,23 +74,16 @@ export const createTag = (tags, setModal) => {
           type: "CREATE_TAG_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };
 
 export const deleteTag = (id) => {
-  const jwt = localStorage.getItem("jwt");
   return (dispatch) => {
     dispatch({ type: "DELETE_TAG_PENDING" });
     axios
-      .delete(`https://infblogdemo.herokuapp.com/tags/${id}`, {
+      .delete(`${Config.apiUrl}/tags/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -104,9 +94,7 @@ export const deleteTag = (id) => {
         });
         dispatch(fetchAllTags());
 
-        toast.success("Record Deleted Successfully!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("Record Deleted Successfully!!");
       })
 
       .catch((error) => {
@@ -119,12 +107,10 @@ export const deleteTag = (id) => {
 };
 
 export const editTag = (tags, id, setModal) => {
-  const jwt = localStorage.getItem("jwt");
-
   return (dispatch) => {
     dispatch({ type: "EDIT_TAG_PENDING" });
     axios
-      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tags, {
+      .put(`${Config.apiUrl}/tags/${id}`, tags, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -137,9 +123,7 @@ export const editTag = (tags, id, setModal) => {
         });
         setModal(false);
         dispatch(fetchAllTags());
-        toast.success("Tag Updated Successfully!!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast.success("Tag Updated Successfully!!");
       })
 
       .catch((error) => {
@@ -147,13 +131,7 @@ export const editTag = (tags, id, setModal) => {
           type: "EDIT_TAG_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };

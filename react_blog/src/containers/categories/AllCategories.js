@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button } from "reactstrap";
-import { Header } from "../../components";
+import { Layout } from "../../components";
 import { fetchAllCategories } from "../../redux/actions/CategoriesActions";
 
 const AllCategories = () => {
@@ -17,8 +17,7 @@ const AllCategories = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container>
         <Row>
           <Col>
@@ -35,7 +34,7 @@ const AllCategories = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </Layout>
   );
 };
 

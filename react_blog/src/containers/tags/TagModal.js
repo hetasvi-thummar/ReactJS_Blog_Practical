@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import { createTag, editTag } from "../../redux/actions/TagsActions";
 
-const formSchema = yup.object().shape({
+const tagSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   description: yup.string().required("*Description is Required"),
@@ -26,7 +26,7 @@ const formSchema = yup.object().shape({
 
 const TagModal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(tagSchema),
   });
 
   const dispatch = useDispatch();
@@ -53,36 +53,6 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
         ) : (
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
-              <Row>
-                <Col md={12}>
-                  <Label>Tag Description</Label>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
-                  <FormGroup>
-                    <Controller
-                      as={Input}
-                      type="textarea"
-                      name="description"
-                      defaultValue={
-                        action === "create"
-                          ? ""
-                          : singletag !== null && singletag.description
-                      }
-                      control={control}
-                      ref={register}
-                      placeholder="Description...."
-                    />
-                    {errors && errors.description && (
-                      <span className="text-danger">
-                        {errors.description.message}
-                      </span>
-                    )}
-                  </FormGroup>
-                </Col>
-              </Row>
-
               <Row>
                 <Col md={4}>
                   <Label>Tag Slug</Label>
@@ -132,6 +102,34 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
                     {errors && errors.title && (
                       <span className="text-danger">
                         {errors.title.message}
+                      </span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={4}>
+                  <Label>Tag Description</Label>
+                </Col>
+                <Col md={8}>
+                  <FormGroup>
+                    <Controller
+                      as={Input}
+                      type="textarea"
+                      name="description"
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singletag !== null && singletag.description
+                      }
+                      control={control}
+                      ref={register}
+                      placeholder="Description...."
+                    />
+                    {errors && errors.description && (
+                      <span className="text-danger">
+                        {errors.description.message}
                       </span>
                     )}
                   </FormGroup>

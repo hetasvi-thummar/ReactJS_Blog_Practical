@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Row, Container } from "reactstrap";
-import Header from "../../components/Header";
 import Categoriesmodal from "./CategoriesModal";
 import CategoriesTable from "./CategoriesTable";
+import { Layout } from "../../components";
 
 const Categories = () => {
   const [modal, setModal] = useState(false);
@@ -12,8 +12,7 @@ const Categories = () => {
   const [action, setAction] = useState();
 
   return (
-    <>
-      <Header></Header>
+    <Layout>
       <Container className="p-5" fluid>
         <Row className="pb-3 ">
           <Button
@@ -37,7 +36,7 @@ const Categories = () => {
           />
         )}
       </Container>
-    </>
+    </Layout>
   );
 };
 

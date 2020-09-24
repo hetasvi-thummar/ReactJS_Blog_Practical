@@ -16,9 +16,9 @@ const Router = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/tags" component={AllTags} />
-        <Route path="/categories" component={AllCategories} />
-        <PrivateRouter path="/admin/posts" component={Posts} />
-        <PrivateRouter path="/admin/categories" component={Categories} />
+        <Route path="/categories" component={AllCategories} exact />
+        <PrivateRouter path="/admin/posts" component={Posts} exact />
+        <PrivateRouter path="/admin/categories" component={Categories} exact />
         <PrivateRouter path="/admin/tags" component={Tags} />
         <Route path="/:slug/:id" component={Singlepost} />
         <Route path="/login" component={Login} />
