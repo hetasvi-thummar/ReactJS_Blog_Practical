@@ -9,12 +9,13 @@ import AllTags from "../../containers/tags/AllTags";
 import Categories from "../../containers/categories/Categories";
 import Tags from "../../containers/tags/Tags";
 import Posts from "../../containers/posts/Posts";
-import { PrivateRouter } from "../../components";
+import { PrivateRouter, LibraryDemo } from "../../components";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/demo" component={LibraryDemo} />
         <Route path="/tags" component={AllTags} />
         <Route path="/categories" component={AllCategories} exact />
         <PrivateRouter path="/admin/posts" component={Posts} exact />

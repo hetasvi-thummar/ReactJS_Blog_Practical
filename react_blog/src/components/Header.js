@@ -58,6 +58,11 @@ const Header = () => {
                 Tags
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/demo" title="demo">
+                Demo
+              </NavLink>
+            </NavItem>
           </Nav>
           {token ? (
             <UncontrolledDropdown>

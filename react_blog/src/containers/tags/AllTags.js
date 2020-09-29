@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button } from "reactstrap";
-import { Header, Layout } from "../../components";
+import { Layout } from "../../components";
 import { fetchAllTags } from "../../redux/actions/TagsActions";
 
 const AllTags = () => {

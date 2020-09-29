@@ -16,7 +16,7 @@ import {
   CardImg,
   CardBody,
 } from "reactstrap";
-import Header from "../../components/Header";
+
 import headerimg from "../../images/headerimage.png";
 import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
 import { Layout } from "../../components";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Row, Container } from "reactstrap";
-import Header from "../../components/Header";
+
 import Postmodal from "./PostModal";
 import PostsTable from "./PostsTable";
 import { Layout } from "../../components";

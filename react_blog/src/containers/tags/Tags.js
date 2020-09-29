@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Row, Container } from "reactstrap";
-import Header from "../../components/Header";
+
 import Tagmodal from "./TagModal";
 import TagsTable from "./TagsTable";
 import { Layout } from "../../components";

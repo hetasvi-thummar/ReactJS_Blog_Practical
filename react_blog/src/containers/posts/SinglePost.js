@@ -14,7 +14,7 @@ import {
   CardBody,
   Label,
 } from "reactstrap";
-import { Header, Layout } from "../../components";
+import { Layout } from "../../components";
 import { fetchSinglePost } from "../../redux/actions/PostsActions";
 import { useParams } from "react-router-dom";
 import { FaTags, FaUserCircle, FaRegHeart } from "react-icons/fa";
